@@ -8,6 +8,7 @@ from .models import (
     CouponCode,
     Refund,
     metaTags,
+    Review,
 )
 # Register your models here.
 
@@ -19,3 +20,4 @@ admin.site.register(Address)
 admin.site.register(CouponCode)
 admin.site.register(Refund)
 admin.site.register(metaTags)
+admin.site.register(Review)
