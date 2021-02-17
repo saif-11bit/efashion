@@ -36,6 +36,22 @@ def category_item(request,id):
     }
     return render(request, 'items.html', context)
 
+# check if query matches item name or cat or des
+def searchMatch(query, item):
+	if query.lower() in item.p_name.lower() or query.lower() in item.category.lower() or query.lower() in item.p_desc.lower():
+		return True
+	return False
+
+# search
+def search_item(request):
+	query = request.GET.get('search')
+	all_items = Item.objects.all()
+	prod = [item for item in all_items if searchMatch(query, item)]
+	context = {
+		'prod':prod
+	}
+	return render(request, 'search.html', context)
+
 
 # Prodcut detail
 def product_detail(request, id):
