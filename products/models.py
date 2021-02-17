@@ -138,3 +138,11 @@ class metaTags(models.Model):
 	def __str__(self):
 		return "Keywords:" + self.keyword
 
+class Review(models.Model):
+	image = models.ImageField(upload_to="Customer_review")
+	name = models.CharField(max_length=50)
+	desc = models.CharField(max_length=300)
+	
+	def __str__(self):
+		return self.name
+	

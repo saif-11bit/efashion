@@ -14,6 +14,7 @@ from .models import (
 	metaTags,
 	Address,
 	CouponCode,
+	Review,
 )
 from .forms import CheckoutForm
 # Create your views here.
@@ -24,11 +25,13 @@ def landing(request):
     items = Item.objects.all()[:8]
     category = Category.objects.all()
     tags = metaTags.objects.all()
+	reviews = Review.objects.all()
     context = {
         'crousal':crousal,
         'items':items,
         'category':category,
 		'tag': tags,
+		'review': reviews,
     }
     return render(request, 'index.html', context)
 

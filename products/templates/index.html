@@ -186,26 +186,17 @@
         <div class="col-lg-12 col-12">
           <div id="carouselExampleControls" class="carousel slide carousel-fade" data-ride="carousel">
             <div class="carousel-inner justify-content-center text-center">
-              <div class="carousel-item active">
-                <img src="{% static 'image/anas.jpg' %}" class="img-fluid img-rounded reviewImages" alt="">
+              {% for i in review %}
+              <div class="carousel-item{% if forloop.first %}active{% endif %}">
+                <img src="{{ i.image.url }}" class="img-fluid img-rounded reviewImages" alt="">
                 <p class="review_title">
-                  Anas Nadeem
+                  {{ i.name }}
                 </p>
                 <p class="review_para">
-                  " Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  In, tenetur! Adipisci ullam sapiente nesciunt "
+                  "{{ i.desc }}" 
                 </p>
               </div>
-              <div class="carousel-item">
-                <img src="{% static 'image/devil.jpg' %}" class="img-fluid img-rounded reviewImages" alt="">
-                <p class="review_title">
-                  Divya Pandey
-                </p>
-                <p class="review_para">
-                  " Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  In, tenetur! Adipisci ullam sapiente nesciunt "
-                </p>
-              </div>
+              {% endfor %}
             </div>
             <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
