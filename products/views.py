@@ -72,6 +72,7 @@ def add_to_cart(request, id):
 		messages.info(request, "This item was added to the cart.")
 		return redirect('products:product-detail', id=id)
 
+
 # Remove from cart
 @login_required
 def remove_from_cart(request, id):
