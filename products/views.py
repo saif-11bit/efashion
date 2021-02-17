@@ -13,8 +13,9 @@ from .models import (
     Order,
 	metaTags,
 	Address,
+	CouponCode,
 )
-from .forms import CheckoutForm,CouponForm
+from .forms import CheckoutForm
 # Create your views here.
 
 # Landing page view
@@ -183,7 +184,7 @@ class CheckoutView(LoginRequiredMixin,View):
 			context = {
 				'form': form,
 				'order':order,
-				'couponForm':CouponForm(),
+				# 'couponForm':CouponForm(),
 			}
 
 			address_qs = Address.objects.filter(
@@ -252,3 +253,26 @@ class CheckoutView(LoginRequiredMixin,View):
 		except ObjectDoesNotExist:
 			messages.warning(self.request, "You donot have an active order")
 			return redirect("/")
+
+
+# check if coupon exists
+def get_coupon(request, code):
+	now = timezone.now()
+	coupon = CouponCode.objects.get(code__iexact=code, valid_from__lte=now, valid_to__gte=now,active=True)
+	if coupon.exists():
+		return coupon
+
+
+# add Coupon
+def add_coupon(request):
+	try:
+		coupon = request.POST['coupon']
+		coup = get_coupon(coupon)
+		order= Order.objects.get(user=request.user, ordered=False)
+		order.coupon = coup
+		order.save()
+		messages.success(request, "Successfully Added Coupon!")
+		return redirect("checkout")
+	except ObjectDoesNotExist:
+		messages.info(request, "You donot have an active order!")
+		return redirect("checkout")

@@ -11,10 +11,10 @@ class CheckoutForm(forms.Form):
 	# payment_option = forms.ChoiceField(widget=forms.RadioSelect,choices=PAYMENT_METHOD)
 
 
-class CouponForm(forms.Form):
-	code = forms.CharField(label='',widget=forms.TextInput(attrs={
-		'class': 'form-control',
-		'placeholder': 'Promo code',
-		'aria-label':"Recipient's username",
-		'aria-describedby':"basic-addon2"
-	}))
+# class CouponForm(forms.Form):
+# 	code = forms.CharField(label='',widget=forms.TextInput(attrs={
+# 		'class': 'form-control',
+# 		'placeholder': 'Promo code',
+# 		'aria-label':"Recipient's username",
+# 		'aria-describedby':"basic-addon2"
+# 	}))
