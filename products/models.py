@@ -132,3 +132,11 @@ class Refund(models.Model):
 
 	def __str__(self):
 		return f"{self.pk}"
+
+class metaTags(models.Model):
+	keyword = models.TextField()
+	desc = models.TextField()
+
+	def __str__(self):
+		return "Keywords:" + self.keyword
+

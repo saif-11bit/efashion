@@ -8,6 +8,7 @@ from .models import (
     Item,
     OrderItem,
     Order,
+	metaTags,
 )
 # Create your views here.
 
@@ -16,18 +17,22 @@ def landing(request):
     crousal = Crousal.objects.all()
     items = Item.objects.all()[:8]
     category = Category.objects.all()
+	tags = metaTags.objects.all()
     context = {
         'crousal':crousal,
         'items':items,
         'category':category,
+		'tag': tags,
     }
     return render(request, 'landing.html', context)
 
 # product list of particular category
 def category_item(request,id):
     items = Item.objects.filter(category=id)
+	tags = metaTags.objects.all()
     context = {
         'items':items,
+		'tag': tags,
     }
     return render(request, 'items.html', context)
 
@@ -35,8 +40,10 @@ def category_item(request,id):
 # Prodcut detail
 def product_detail(request, id):
     item = Item.objects.get(id=id)
+	tags = metaTags.objects.all()
     context = {
         'item' :item,
+		'tag': tags,
     }
     return render(request, 'product-detail.html', context)
 
