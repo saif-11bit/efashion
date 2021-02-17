@@ -31,7 +31,7 @@ def landing(request):
         'items':items,
         'category':category,
         'tag': tags,
-        'review': reviews
+        'review': reviews,
     }
     return render(request, 'index.html', context)
 
@@ -122,6 +122,7 @@ def remove_from_cart(request, id):
 
             order_item.quantity = 1
             order_item.save()
+<<<<<<< HEAD
             
             order.items.remove(order_item)
             messages.info(request, "This item was removed from your cart.")
@@ -131,6 +132,17 @@ def remove_from_cart(request, id):
             messages.info(request, "This item was not in your cart.")
             return redirect('products:product-detail', id=id)
             
+=======
+            
+            order.items.remove(order_item)
+            messages.info(request, "This item was removed from your cart.")
+            return redirect('/')
+        else:
+            # order doesn't contain this order item
+            messages.info(request, "This item was not in your cart.")
+            return redirect('products:product-detail', id=id)
+            
+>>>>>>> 01217ca5cdc311ff9d29002a323e9d1a7b4e933e
     else:
         # user doesn't have an order
         messages.info(request, "You donot have active order.")
@@ -202,7 +214,11 @@ class CheckoutView(LoginRequiredMixin,View):
 
         except ObjectDoesNotExist:
             messages.info(self.request, "You donot have an active order!")
+<<<<<<< HEAD
             return redirect('checkout')
+=======
+            return redirect('products:checkout')
+>>>>>>> 01217ca5cdc311ff9d29002a323e9d1a7b4e933e
 
 
     def post(self, *args, **kwargs):
@@ -275,7 +291,17 @@ def add_coupon(request):
         order.coupon = coup
         order.save()
         messages.success(request, "Successfully Added Coupon!")
+<<<<<<< HEAD
         return redirect("checkout")
     except ObjectDoesNotExist:
         messages.info(request, "You donot have an active order!")
         return redirect("checkout")
+=======
+        return redirect("products:checkout")
+    except ObjectDoesNotExist:
+        messages.info(request, "You donot have an active order!")
+        return redirect("products:checkout")
+
+
+
+>>>>>>> 01217ca5cdc311ff9d29002a323e9d1a7b4e933e
