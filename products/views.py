@@ -199,7 +199,7 @@ class CheckoutView(LoginRequiredMixin,View):
 
 		except ObjectDoesNotExist:
 			messages.info(self.request, "You donot have an active order!")
-			return redirect('checkout')
+			return redirect('products:checkout')
 
 
 	def post(self, *args, **kwargs):
@@ -272,7 +272,10 @@ def add_coupon(request):
 		order.coupon = coup
 		order.save()
 		messages.success(request, "Successfully Added Coupon!")
-		return redirect("checkout")
+		return redirect("products:checkout")
 	except ObjectDoesNotExist:
 		messages.info(request, "You donot have an active order!")
-		return redirect("checkout")
+		return redirect("products:checkout")
+
+
+
