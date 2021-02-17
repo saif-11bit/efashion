@@ -2,6 +2,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import View
+from django.core.exceptions import ObjectDoesNotExist
 from .models import (
     Crousal,
     Category,
@@ -9,7 +12,9 @@ from .models import (
     OrderItem,
     Order,
 	metaTags,
+	Address,
 )
+from .forms import CheckoutForm,CouponForm
 # Create your views here.
 
 # Landing page view
@@ -159,6 +164,91 @@ def remove_single_from_cart(request, id):
 		messages.info(request, "You donot have active order.")
 		return redirect('products:product-detail', id=id)
 
+def is_valid_form(values):
+	valid = True
+	for field in values:
+		if field == '':
+			valid = False
+	return valid
 
 
 # Checkout
+class CheckoutView(LoginRequiredMixin,View):
+	def get(self,*args, **kwargs):
+		# form
+		form = CheckoutForm()
+
+		try:
+			order= Order.objects.get(user=self.request.user, ordered=False)
+			context = {
+				'form': form,
+				'order':order,
+				'couponForm':CouponForm(),
+			}
+
+			address_qs = Address.objects.filter(
+				user=self.request.user,
+				default=True,
+			)
+			
+			if address_qs.exists():
+				context.update( {'default_address': address_qs.last()} )
+
+			return render(self.request, 'checkout-page.html', context)
+
+		except ObjectDoesNotExist:
+			messages.info(self.request, "You donot have an active order!")
+			return redirect('checkout')
+
+
+	def post(self, *args, **kwargs):
+		form = CheckoutForm(self.request.POST or None)
+		try:
+			order = Order.objects.get(user=self.request.user, ordered=False)
+			if form.is_valid():
+				use_default_address = form.cleaned_data.get('use_default_address')
+				if use_default_address:
+					print('Using default address!')
+					address_qs = Address.objects.filter(
+						user=self.request.user,
+						default=True,
+					)
+					if address_qs.exists():
+						address = address_qs.first()
+						order.address=address
+						order.save()						
+					else:
+						messages.info(self.request, 'No default address available!')
+						return redirect('checkout')
+				else:
+					# print('user is entering new shipping address!')
+					street_address = form.cleaned_data.get('street_address')
+					address_line2 = form.cleaned_data.get('address_line2')
+					state = form.cleaned_data.get('state')
+					city = form.cleaned_data.get('city')
+					pin_code = form.cleaned_data.get('pin_code')
+					
+
+					if is_valid_form([street_address,state,city,pin_code]):		
+
+						address=Address(
+							user=self.request.user,street_address=street_address,address_line2=address_line2,state=state,city=city,pin_code=pin_code
+						)
+						address.save()
+
+						order.address=address
+						order.save()
+
+						set_default_address = form.cleaned_data.get('set_default_address')
+						if set_default_address:
+							address.default = True
+							address.save()
+
+					else:
+						messages.info(self.request, 'Please fill required Address fields!')
+
+				return redirect('/')
+
+		except ObjectDoesNotExist:
+			messages.warning(self.request, "You donot have an active order")
+			return redirect("/")
