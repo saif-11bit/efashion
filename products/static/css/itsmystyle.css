@@ -1,0 +1,486 @@
+/* Universal i.e for all CSS Start  */
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* font-family: 'Roboto', sans-serif; */
+}
+/* 
+body {
+    background-color: var(--bgMainCol) !important;
+} */
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+/* p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    font-weight: 400;
+    660708
+    900C19
+} */
+:root {
+  --mainCol: #fcbf49;
+  --bgMainCol: #ffffff;
+  --seconMainBgCol: #660708;
+  --txtCol: #000000;
+  --sidenavtxtcol: #ffffff;
+}
+/* Universal i.e for all CSS Ends  */
+/* Sidebar Begins  */
+.sidebarlogo {
+  color: var(--mainCol);
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  /*Will change with javascript */
+  position: fixed;
+  z-index: 1;
+  /* Stay on top*/
+  top: 0;
+  left: 0;
+  background-color: var(--seconMainBgCol);
+  overflow-x: hidden;
+  /*Disable horizontal scroll */
+  padding-top: 60px;
+  /*Place content 60px from the top*/
+  transition: 0.25s;
+}
+
+.sidenav .closebtn {
+  color: var(--mainCol);
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.closebtn:hover {
+  color: var(--mainCol) !important;
+}
+.sidenav h3 {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: var(--sidenavtxtcol);
+  display: block;
+  transition: 0.3s;
+}
+
+.userName {
+  color: var(--mainCol);
+}
+
+.sidenav a {
+  padding: 8px 8px 2px 32px;
+  text-decoration: none;
+  font-size: 18px;
+  color: var(--sidenavtxtcol);
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: var(--sidenavtxtcol);
+}
+
+/* Sidebar Ends  */
+#navbarId {
+  background-color: var(--seconMainBgCol);
+}
+
+.navAnchorItem {
+  color: #ffffff !important;
+}
+.carLogoAnchor {
+  font-size: 20px;
+}
+.cartlogo {
+  color: var(--mainCol);
+}
+.mainLogo {
+  height: 40px !important;
+  z-index: 100;
+  padding: 0 !important;
+}
+/* Authentication CSS Begins  */
+/* Login and Signin Page Begins*/
+
+.cardSignin {
+  background-color: var(--seconMainBgCol) !important;
+  margin-top: 80px;
+}
+
+.cardnewSignin {
+  background-color: var(--seconMainBgCol) !important;
+  margin-top: 40px;
+}
+
+.cardnewSignin .card-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--mainCol);
+}
+
+.inputFormLogin {
+  background-color: var(--bgMainCol) !important;
+  border: 0 !important;
+}
+
+.cardSignin .card-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--mainCol);
+}
+
+.labelForInput {
+  color: var(--mainCol);
+}
+
+.custom-control-input {
+  background-color: var(--bgMainCol) !important;
+}
+
+.submitBtnLogin {
+  border: 1px solid var(--seconMainBgCol) !important;
+  outline: none;
+  color: var(--txtCol) !important;
+  background-color: var(--bgMainCol) !important;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.custom-control-label {
+  color: var(--bgMainCol);
+}
+
+.inputFormLogin::placeholder {
+  color: var(--seconMainBgCol) !important;
+}
+
+/* For Hr  Begins*/
+.hr-text {
+  line-height: 1em;
+  position: relative;
+  outline: 0;
+  border: 0;
+  /* color: black; */
+  text-align: center;
+  height: 1.5em;
+  opacity: 0.5;
+}
+
+.hr-text:before {
+  content: "";
+  background: var(--bgMainCol);
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 1px;
+}
+
+.hr-text:after {
+  content: attr(data-content);
+  position: relative;
+  display: inline-block;
+  /* color: black; */
+  padding: 0 0.5em;
+  line-height: 1.5em;
+  /* this is really the only tricky part, you need to specify the background color of the container element... */
+  color: var(--bgMainCol);
+  background-color: var(--seconMainBgCol);
+}
+
+/* For Hr  Ends*/
+
+/* Login and Signin Page Ends*/
+
+/* OTP Page Begins  */
+.otpnotrecieve {
+  color: var(--sidenavtxtcol);
+}
+
+.resendOtp {
+  color: var(--mainCol);
+  font-size: 16px;
+}
+/* OTP Page Ends  */
+
+/* Authentication CSS Ends  */
+
+/* Main Banner CSS Begins  */
+.mainBanner {
+  width: 100%;
+  height: auto;
+}
+
+.mainBannerImages {
+  width: 100%;
+  height: auto;
+}
+/* Main Banner CSS Ends  */
+/* SomeMoreAd CSS Begins   */
+.someMoreAd {
+  width: 100%;
+  height: auto;
+  margin-top: 1.2rem;
+}
+
+.someMoreAdMainText {
+  font-size: 3rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--seconMainBgCol);
+}
+
+/* SomeMoreAd CSS Begins   */
+/* categoriesSec CSS Begins */
+.categoriesSec {
+  width: 100%;
+  height: auto;
+  margin-top: 0.4rem;
+}
+
+.categoriesMainTitle {
+  font-size: 2.4rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--seconMainBgCol);
+}
+
+.categoriesCardImage {
+  width: 100%;
+  height: auto;
+}
+.categoriesCardTitle {
+  font-size: 1.8rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--seconMainBgCol);
+}
+/* categoriesSec CSS Ends */
+hr.style5 {
+  background-color: #fff;
+  border-top: 2px dashed #8c8b8b;
+}
+/* particularCategoriesSec CSS Begins  */
+.particularCategoriesSec {
+  width: 100%;
+  height: auto;
+  margin-top: 0.4rem;
+}
+
+.particularCategoriesCard {
+  width: 100%;
+}
+
+.particularCategoriesCardImage {
+  width: 100%;
+  height: auto;
+}
+
+.particularCategoriesCardTitle {
+  font-size: 1.8rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--seconMainBgCol);
+}
+/* particularCategoriesSec CSS Ends  */
+/* newsLetter CSS Begins  */
+.newsLetter {
+  width: 100%;
+  height: auto;
+  margin-top: 0.4rem;
+  margin-bottom: 3rem;
+}
+.searchInput {
+  border-radius: 100px 0px 0px 100px;
+  border-color: var(--seconMainBgCol);
+  min-width: 150px;
+  min-height: 45px;
+}
+
+.searchInput::placeholder {
+  color: var(--seconMainBgCol);
+}
+
+.subscribeText {
+  color: var(--sidenavtxtcol);
+  background: var(--seconMainBgCol);
+  border-radius: 0 100px 100px 0;
+  font-size: 1.4rem;
+  min-width: 120px;
+  min-height: 40px;
+}
+/* .newsLetter CSS Ends  */
+/* reviews CSS Begins  */
+.reviews {
+  width: 100%;
+  height: auto;
+  margin-top: 0.4rem;
+}
+
+.reviewImages {
+  height: 10rem;
+  width: 10rem;
+  border-radius: 50%;
+}
+
+.review_title {
+  margin-top: 1rem;
+  line-height: 1.2;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--seconMainBgCol);
+}
+
+.review_para {
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.2rem;
+}
+/* reviews CSS Ends  */
+/* Footer Begins  */
+.footerId {
+  width: 100%;
+  height: auto;
+  padding: 70px 0 20px 0;
+  background: var(--seconMainBgCol);
+  position: relative;
+}
+
+.footer-div h4 {
+  text-transform: uppercase;
+  color: var(--mainCol);
+  margin-bottom: 25px;
+  font-size: 1.2rem !important;
+  font-weight: 600;
+}
+
+.footer-div li a {
+  line-height: 1.2;
+  font-weight: 400;
+  color: #fff;
+}
+
+.fbitext:hover {
+  color: #3b5998 !important;
+}
+
+.twitext:hover {
+  color: #00acee !important;
+}
+
+.insitext:hover {
+  color: #bc2a8d !important;
+}
+
+.youtubetext:hover {
+  color: #c4302b !important;
+}
+
+.fbi {
+  color: #3b5998;
+}
+
+.twi {
+  color: #00acee;
+}
+
+.insi {
+  color: #bc2a8d;
+}
+
+.yti {
+  color: #c4302b;
+}
+
+#copyrightYear {
+  color: #ffffff;
+}
+
+#RipeChilli {
+  color: #ffffff;
+}
+.loveRC {
+  color: #ffffff;
+}
+/* Footer Ends  */
+/* Product CSS Begins  */
+.bannerImage{
+  width: 100%;
+}
+
+.breadcrumbClass{
+  background-color: #ffffff;
+}
+
+.breadcrumbClassItem{
+  color: var(--seconMainBgCol) !important;
+  font-weight: 600;
+}
+
+.breadcrumbClassItem a{
+  color: var(--seconMainBgCol) !important;
+}
+
+.productSec{
+  width: 100%;
+  height: auto;
+  margin-top: 2rem;
+}
+
+.productSecCardImage{
+  width: 100%;
+}
+
+.productSecCardTitle{
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--seconMainBgCol);
+  margin-bottom: 0rem;
+}
+
+.productSecCardPrice{
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--seconMainBgCol);
+}
+/* Product CSS Ends  */
+/* Product Des CSS Begins  */
+.productDesSec{
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+  width: 100%;
+  height: auto;
+}
+
+.productDesSecTitle{
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-bottom: 0rem;
+}
+
+.productDesSecPrice{
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+/* Product Des CSS Ends  */

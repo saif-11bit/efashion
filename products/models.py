@@ -95,8 +95,6 @@ class Order(models.Model):
 			total -= self.coupon.amount
 		return total
 
-
-
 class Address(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	street_address = models.CharField(max_length=200)

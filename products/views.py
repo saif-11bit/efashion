@@ -30,7 +30,7 @@ def landing(request):
         'category':category,
 		'tag': tags,
     }
-    return render(request, 'landing.html', context)
+    return render(request, 'index.html', context)
 
 # product list of particular category
 def category_item(request,id):
