@@ -134,15 +134,13 @@ class Refund(models.Model):
 class metaTags(models.Model):
 	keyword = models.TextField()
 	desc = models.TextField()
-
 	def __str__(self):
-		return "Keywords:" + self.keyword
+		return self.keyword
 
 class Review(models.Model):
 	image = models.ImageField(upload_to="Customer_review")
 	name = models.CharField(max_length=50)
-	desc = models.CharField(max_length=300)
-	
-	def __str__(self):
+	desc = models.TextField()	
+	def __str__(self): 
 		return self.name
 	
