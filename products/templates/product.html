@@ -9,14 +9,14 @@
     <div class="container-fluid">
       <ol class="breadcrumb breadcrumbClass">
         <li class="breadcrumb-item breadcrumbClassItem">
-          <a href="#">Home</a>
+          <a href="/">Home</a>
         </li>
-        <li class="breadcrumb-item breadcrumbClassItem"><a href="#">Men</a></li>
+        <li class="breadcrumb-item breadcrumbClassItem"><a href="/">Men</a></li>
         <li
           class="breadcrumb-item breadcrumbClassItem active"
           aria-current="page"
-        >
-          Shirwani
+        ><a href="{% url 'category' cate.id %}">
+        {{cate.title}}</a>
         </li>
       </ol>
     </div>
