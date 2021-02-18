@@ -1,77 +1,52 @@
-{% extends 'base.html' %}
-{% block mainCont %}
-{% load static %}
-  <section class="banner">   
-          <img src="{% static 'image/taiyaarcoll_banner1.jpg' %}" class="img-fluid bannerImage" alt="">
-          <nav aria-label="breadcrumb">
-            <div class="container-fluid">
-              <ol class="breadcrumb breadcrumbClass">
-                <li class="breadcrumb-item breadcrumbClassItem"><a href="#">Home</a></li>
-                <li class="breadcrumb-item breadcrumbClassItem"><a href="#">Men</a></li>
-                <li class="breadcrumb-item breadcrumbClassItem active" aria-current="page">Shirwani</li>
-              </ol>
-            </div>      
-          </nav>
-  </section>
-  <!-- Product Begins  -->
-  <section class="productSec">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 col-12">   
-            <p class="text-center categoriesMainTitle">
-              Shirwani
-            </p>
-            <hr class="style5">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-3 col-md-6 col-6">
-            <a href="productDes.html">
-              <img src="{% static 'image/shirwani.jpg' %}" class="img-fluid productSecCardImage" alt="">
-              <p class="text-center productSecCardTitle">
-                Modern Shirwani
-              </p>
-              <p class="text-center productSecCardPrice">
-                ₹7999
-              </p>
-            </a>
-          </div>
-          <div class="col-lg-3 col-md-6 col-6">
-            <a href="#">
-              <img src="{% static 'image/shirwani.jpg' %}" class="img-fluid productSecCardImage" alt="">
-              <p class="text-center productSecCardTitle">
-                Modern Shirwani
-              </p>
-              <p class="text-center productSecCardPrice">
-                ₹7999
-              </p>
-            </a>
-          </div>
-          <div class="col-lg-3 col-md-6 col-6">
-            <a href="#">
-              <img src="{% static 'image/shirwani.jpg' %}" class="img-fluid productSecCardImage" alt="">
-              <p class="text-center productSecCardTitle">
-                Modern Shirwani
-              </p>
-              <p class="text-center productSecCardPrice">
-                ₹7999
-              </p>
-            </a>
-          </div>
-          <div class="col-lg-3 col-md-6 col-6">
-            <a href="#">
-              <img src="{% static 'image/shirwani.jpg' %}" class="img-fluid productSecCardImage" alt="">
-              <p class="text-center productSecCardTitle">
-                Modern Shirwani
-              </p>
-              <p class="text-center productSecCardPrice">
-                ₹7999
-              </p>
-            </a>
-          </div>
-        </div>
+{% extends 'base.html' %} {% block mainCont %} {% load static %}
+<section class="banner">
+  <img
+    src="{% static 'image/taiyaarcoll_banner1.jpg' %}"
+    class="img-fluid bannerImage"
+    alt=""
+  />
+  <nav aria-label="breadcrumb">
+    <div class="container-fluid">
+      <ol class="breadcrumb breadcrumbClass">
+        <li class="breadcrumb-item breadcrumbClassItem">
+          <a href="/">Home</a>
+        </li>
+        <li class="breadcrumb-item breadcrumbClassItem"><a href="/">Men</a></li>
+        <li
+          class="breadcrumb-item breadcrumbClassItem active"
+          aria-current="page"
+        ><a href="{% url 'category' cate.id %}">
+        {{cate.title}}</a>
+        </li>
+      </ol>
+    </div>
+  </nav>
+</section>
+<!-- Product Begins  -->
+<section class="productSec">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-12">
+        <p class="text-center categoriesMainTitle">{{cate.title}}</p>
+        <hr class="style5" />
       </div>
-  </section>
-  <!-- Product Ends  -->
-{% include 'footer.html' %}
-{% endblock mainCont %}
+    </div>
+    <div class="row">
+      {% for i in items %}
+      <div class="col-lg-3 col-md-6 col-6">
+        <a href="productDes.html">
+          <img
+            src="{{i.p_image.url}}"
+            class="img-fluid productSecCardImage"
+            alt=""
+          />
+          <p class="text-center productSecCardTitle">{{i.p_name}}</p>
+          <p class="text-center productSecCardPrice">₹{{i.p_price}}</p>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<!-- Product Ends  -->
+{% include 'footer.html' %} {% endblock mainCont %}

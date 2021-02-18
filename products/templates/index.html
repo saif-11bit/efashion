@@ -65,7 +65,7 @@
       <div class="row">
         {% for j in i.category_set.all %}
         <div class="col-lg-3 col-md-6 col-6">
-          <a href="product.html">
+          <a href="{% url 'category' j.id %}">
             <div class="particularCategoriesCard">
               <img src="{{j.poster.url}}" class="img-fluid particularCategoriesCardImage" alt="">
               <p class="text-center particularCategoriesCardTitle">
