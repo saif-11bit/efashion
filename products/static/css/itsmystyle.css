@@ -544,3 +544,73 @@ hr.style5 {
   font-weight: 600;
 }
 /* Product Des CSS Ends  */
+
+/* Cart CSS Begins  */
+.cartSec{
+  width: 100%;
+  height: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.cartSecCard{
+  width: 100%;
+  height: auto;
+  margin-top: 1.2rem;
+}
+
+.cartSecCard:hover{
+  transform: translateY(-4px);
+  transition-duration: 400ms;
+  /* transition: [property] [duration] [timing-function] [delay]; */
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
+}
+.cartSecCardImage{
+  width: 100%;
+  height: 100%;
+}
+
+.cartSecCardTitle{
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--seconMainBgCol);
+  margin-bottom: 0rem;
+}
+
+.cartSecCardPrice{
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin-bottom: 0rem;
+  color: var(--seconMainBgCol);
+}
+
+.cartSecCardSize{
+  font-size: 1rem;
+  margin-bottom: 0rem;
+}
+
+.cartSecCardBtn{
+  width: 80%;
+  background-color: var(--seconMainBgCol);
+  border-radius: 2px solid var(--seconMainBgCol);
+  color: #ffffff;
+  
+}
+
+.cartSecCardBtn:hover{
+  color: #ffffff;
+  background-color: var(--seconMainBgCol);
+}
+
+.checkoutNowBtn{
+  width: 100%;
+  color: #ffffff;
+  background-color: var(--seconMainBgCol);
+}
+
+.checkoutNowBtn:hover{
+  color: #ffffff;
+  background-color: var(--seconMainBgCol);
+}
+/* Cart CSS Ends  */
