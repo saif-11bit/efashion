@@ -15,7 +15,7 @@ from .views import (
 urlpatterns = [
     path('', landing, name="landing"),
     path('search/', search_item, name="search"),
-    path('<int:id>/', category_item, name="landing"),
+    path('category/<int:id>/', category_item, name="category"),
     path('product-detail/<int:id>/', product_detail, name="product-detail"),
     path('add-to-cart/<int:id>/', add_to_cart, name="add-to-cart"),
     path('remove-from-cart/<int:id>/', remove_from_cart, name="remove-from-cart"),

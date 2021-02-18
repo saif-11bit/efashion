@@ -31,7 +31,7 @@ def landing(request):
         'available_for':Available_For.objects.all(),
         'crousal':crousal,
         'items':items,
-        'category':Category,
+        # 'category':Category,
         'tag': tags,
         'review': reviews,
     }
@@ -40,12 +40,14 @@ def landing(request):
 # product list of particular category
 def category_item(request,id):
     items = Item.objects.filter(category=id)
+    cate = Category.objects.get(id=id)
     tags = metaTags.objects.all()
     context = {
         'items':items,
         'tag': tags,
+        'cate':cate,
     }
-    return render(request, 'items.html', context)
+    return render(request, 'product.html', context)
 
 # check if query matches item name or cat or des
 def searchMatch(query, item):
