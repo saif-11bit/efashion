@@ -71,12 +71,16 @@ def search_item(request):
 # Prodcut detail
 def product_detail(request, id):
     item = Item.objects.get(id=id)
+    related_item = Item.objects.exclude(id=id).filter(category=item.category)[:4]
     tags = metaTags.objects.all()
+
+
     context = {
         'item' :item,
         'tag': tags,
+        'related_item':related_item,
     }
-    return render(request, 'product-detail.html', context)
+    return render(request, 'productDes.html', context)
 
 
 

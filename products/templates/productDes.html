@@ -7,11 +7,18 @@
           <div id="carouselMobileViewIndicator" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img class="d-block w-100" src="{% static 'image/shirwani.jpg' %}" alt="First slide">
+                <img class="d-block w-100" src="{{item.p_image.url}}" alt="First slide">
               </div>
+              {% if item.second_img %}
               <div class="carousel-item">
-                <img class="d-block w-100" src="{% static 'image/UNLB4038-425_alia_bhatt195902_1.jpg' %}" alt="Second slide">
+                <img class="d-block w-100" src="{{item.second_img.url}}" alt="Second slide">
               </div>
+              {% endif %}
+              {% if item.third_img %}
+              <div class="carousel-item">
+                <img class="d-block w-100" src="{{item.third_img.url}}" alt="Third slide">
+              </div>
+              {% endif %}
             </div>
             <a class="carousel-control-prev" href="#carouselMobileViewIndicator" role="button" data-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -26,14 +33,13 @@
         <div class="col-lg-8 col-md-8 col-sm-12 col-12">
           <div class="container">
             <p class="productDesSecTitle">
-              Modern Day Shirwani
+              {{item.p_name}}
             </p>
             <p class="productDesSecPrice">
-              ₹7999
+              ₹{{item.p_price}}
             </p>
             <p class="productDesSecDes">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus harum earum aperiam dolor facere ea, 
-              aliquam atque suscipit expedita voluptatibus numquam perferendis nemo? Expedita dolorum quibusdam mollitia nisi porro esse.
+              {{item.p_desc}}
             </p>
             <p class="productDesSecSize">
               Select Size
@@ -74,30 +80,14 @@
         </div>
       </div>
       <div class="row">
+        {% for i in related_item %}
         <div class="col-lg-3 col-md-3 col-6">
-          <img src="{% static 'image/shirwani.jpg' %}" class="img-fluid similarProductCardImg" alt="">
+          <img src="{{i.p_image.url}}" class="img-fluid similarProductCardImg" alt="">
           <p class="similarProductCardTitle text-center">
-            Shirwani F..
+            {{i.p_name}}
           </p>
         </div>
-        <div class="col-lg-3 col-md-3 col-6">
-          <img src="{% static 'image/shirwani.jpg' %}" class="img-fluid similarProductCardImg" alt="">
-          <p class="similarProductCardTitle text-center">
-            Shirwani F..
-          </p>
-        </div>
-        <div class="col-lg-3 col-md-3 col-6">
-          <img src="{% static 'image/shirwani.jpg' %}" class="img-fluid similarProductCardImg" alt="">
-          <p class="similarProductCardTitle text-center">
-            Shirwani F..
-          </p>
-        </div>
-        <div class="col-lg-3 col-md-3 col-6">
-          <img src="{% static 'image/shirwani.jpg' %}" class="img-fluid similarProductCardImg" alt="">
-          <p class="similarProductCardTitle text-center">
-            Shirwani F..
-          </p>
-        </div>
+        {% endfor %}
       </div>
       
     </div>

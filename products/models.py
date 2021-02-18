@@ -41,6 +41,8 @@ class Item(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     p_name = models.CharField(max_length=200)
     p_image = models.ImageField(upload_to='Items')
+    second_img = models.ImageField(upload_to='Second Img', null=True)
+    third_img = models.ImageField(upload_to='Third Img', null=True)
     p_price = models.IntegerField()
     p_dis_price = models.IntegerField()
     p_desc = models.TextField()
