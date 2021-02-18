@@ -17,7 +17,9 @@ from .models import (
     CouponCode,
     Review,
 )
-from .forms import CheckoutForm
+from .forms import CheckoutForm, CreateUserForm
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 
 # Landing page view
@@ -282,5 +284,44 @@ def add_coupon(request):
         messages.info(request, "You donot have an active order!")
         return redirect("products:checkout")
 
+def SignUpSystem(request):
+    if request.user.is_authenticated:
+        return redirect('landing')
+    else:
+        form = CreateUserForm()
+
+        if request.method == 'POST':
+            form = CreateUserForm(request.POST)
+            if form.is_valid():
+                form.save()
+                user = form.cleaned_data.get('username')
+                messages.success(request, 'Account Successfully created for ' + user)
+
+                return redirect('Login')
+
+        context = {'form':form}
+    return render(request, 'signup.html', context)
+
+def LoginSystem(request):
+    if request.user.is_authenticated:
+        return redirect('landing')
+    else:
+        if request.method == "POST":
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+
+            user = authenticate(request, username=username, password=password)
+    
+            if user is not None:
+                login(request, user)
+                return redirect('landing')
+            else:
+                messages.info(request, 'Email or password is incorrect')
+
+        context = {}
+    return render(request, 'login.html', context)
 
 
+def logoutUser(request):
+    logout(request)
+    return redirect('Login')

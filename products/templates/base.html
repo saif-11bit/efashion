@@ -24,25 +24,31 @@
   <!-- Navbar Begins  -->
   <nav class="navbar navbar-expand-sm navbar-dark" id="navbarId">
     <div class="container-fluid">
-      <a class="navbar-brand" href="index.html">eFashionBazar</a>
+      <a class="navbar-brand" href="{% url 'landing' %}">eFashionBazar</a>
       <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
         aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"></button>
       <div class="collapse navbar-collapse" id="collapsibleNavId">
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
           <li class="nav-item">
-            <a class="nav-link navAnchorItem" href="#menparticularCategoriesSecId">MEN</a>
+            <a class="nav-link navAnchorItem" href="{% url 'landing' %}#MENparticularCategoriesSecId">MEN</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link navAnchorItem" href="#womenparticularCategoriesSecId">WOMEN</a>
+            <a class="nav-link navAnchorItem" href="{% url 'landing' %}#WOMENparticularCategoriesSecId">WOMEN</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link navAnchorItem" href="#kidsparticularCategoriesSecId">KIDS</a>
+            <a class="nav-link navAnchorItem" href="{% url 'landing' %}#KIDSparticularCategoriesSecId">KIDS</a>
           </li>
         </ul>
         <ul class="navbar-nav ml-auto">
+          {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link navAnchorItem" href="login.html">Login | Signup</a>
+            <a class="nav-link navAnchorItem" href="{% url 'Logout' %}">Logout</a>
           </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link navAnchorItem" href="{% url 'Login' %}">Login | Signup</a>
+          </li>
+          {% endif %}
           <li class="nav-item">
             <a class="nav-link carLogoAnchor" href="cart.html">
               <i class="fa fa-opencart cartlogo" aria-hidden="true"></i>

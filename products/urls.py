@@ -8,6 +8,9 @@ from .views import (
     remove_single_from_cart,
     search_item,
     CheckoutView,
+    SignUpSystem,
+    LoginSystem,
+    logoutUser,
 )
 
 
@@ -21,4 +24,9 @@ urlpatterns = [
     path('remove-from-cart/<int:id>/', remove_from_cart, name="remove-from-cart"),
     path('remove-single-from-cart/<int:id>/', remove_single_from_cart, name="remove-single-from-cart"),
     path('checkout/', CheckoutView.as_view(), name="checkout"),
+    # Authentication System 
+    path('signup/', SignUpSystem, name="Signin"),
+    path('login/', LoginSystem, name="Login"),
+    path('logout/', logoutUser, name="Logout")
+
 ]
