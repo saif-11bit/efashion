@@ -39,137 +39,52 @@
         </div>
       </div>
       <div class="row">
+        {% for i in available_for %}
         <div class="col-lg-4 col-12">
-          <a href="#menparticularCategoriesSecId">
+          <a href="#{{i.title}}particularCategoriesSecId">
             <div class="categoriesCard">
-              <img src="{% static 'image/shirwani.jpg' %}" class="img-fluid categoriesCardImage" alt="">
+              <img src="{{i.img.url}}" class="img-fluid categoriesCardImage" alt="">
               <p class="text-center categoriesCardTitle">
-                Men
+                {{i.title}}
               </p>
             </div>
           </a>
         </div>
-        <div class="col-lg-4 col-12">
-          <a href="#womenparticularCategoriesSecId">
-            <div class="categoriesCard">
-              <img src="{% static 'image/UNLB4038-425_alia_bhatt195902_1.jpg' %}" class="img-fluid categoriesCardImage" alt="">
-              <p class="text-center categoriesCardTitle">
-                Women
-              </p>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-4 col-12">
-          <a href="#kidsparticularCategoriesSecId">
-            <div class="categoriesCard">
-              <img src="{% static 'image/shirwani.jpg' %}" class="img-fluid categoriesCardImage" alt="">
-              <p class="text-center categoriesCardTitle">
-                Kids
-              </p>
-            </div>
-          </a>
-        </div>
+        {% endfor %}
       </div>
     </div>
   </section>
   <!-- Categories Ends  -->
   <!-- Particular Categories Begins  -->
-  <section class="particularCategoriesSec" id="menparticularCategoriesSecId">
+{% for i in available_for %}
+  <section class="particularCategoriesSec" id="{{i.title}}particularCategoriesSecId">
     <div class="container">
       <div class="row">
         <div class="col-lg-12 col-12">
           <hr class="style5">
           <p class="text-center categoriesMainTitle">
-            Men
+            {{i.title}}
           </p>
         </div>
       </div>
       <div class="row">
+        {% for j in i.category_set.all %}
         <div class="col-lg-3 col-md-6 col-6">
           <a href="product.html">
             <div class="particularCategoriesCard">
-              <img src="{% static 'image/shirwani.jpg' %}" class="img-fluid particularCategoriesCardImage" alt="">
+              <img src="{{j.poster.url}}" class="img-fluid particularCategoriesCardImage" alt="">
               <p class="text-center particularCategoriesCardTitle">
-                Kurta
+                {{j.title}}
               </p>
             </div>
           </a>
         </div>
-        <div class="col-lg-3 col-md-6 col-6">
-          <a href="product.html">
-            <div class="particularCategoriesCard">
-              <img src="{% static 'image/shirwani.jpg' %}" class="img-fluid particularCategoriesCardImage" alt="">
-              <p class="text-center particularCategoriesCardTitle">
-                Pyjama
-              </p>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-6 col-6">
-          <div class="particularCategoriesCard">
-            <img src="{% static 'image/shirwani.jpg' %}" class="img-fluid particularCategoriesCardImage" alt="">
-            <p class="text-center particularCategoriesCardTitle">
-              Shirwani
-            </p>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-6">
-          <div class="particularCategoriesCard">
-            <img src="{% static 'image/shirwani.jpg' %}" class="img-fluid particularCategoriesCardImage" alt="">
-            <p class="text-center particularCategoriesCardTitle">
-              Pagdi
-            </p>
-          </div>
-        </div>
+        {% endfor %}
       </div>
     </div>
   </section>
-  <section class="particularCategoriesSec" id="womenparticularCategoriesSecId">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 col-12">
-          <hr class="style5">
-          <p class="text-center categoriesMainTitle">
-            Women
-          </p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-3 col-md-6 col-6">
-          <div class="particularCategoriesCard">
-            <img src="{% static 'image/UNLB4038-425_alia_bhatt195902_1.jpg' %}" class="img-fluid particularCategoriesCardImage" alt="">
-            <p class="text-center particularCategoriesCardTitle">
-              Kurti
-            </p>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-6">
-          <div class="particularCategoriesCard">
-            <img src="{% static 'image/UNLB4038-425_alia_bhatt195902_1.jpg' %}" class="img-fluid particularCategoriesCardImage" alt="">
-            <p class="text-center particularCategoriesCardTitle">
-              Saree
-            </p>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-6">
-          <div class="particularCategoriesCard">
-            <img src="{% static 'image/UNLB4038-425_alia_bhatt195902_1.jpg' %}" class="img-fluid particularCategoriesCardImage" alt="">
-            <p class="text-center particularCategoriesCardTitle">
-              Shirwani
-            </p>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-6">
-          <div class="particularCategoriesCard">
-            <img src="{% static 'image/UNLB4038-425_alia_bhatt195902_1.jpg' %}" class="img-fluid particularCategoriesCardImage" alt="">
-            <p class="text-center particularCategoriesCardTitle">
-              Dupatta
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+{% endfor %}
+
   <!-- Particular Categories Ends  -->
   <!-- Reviews Begins  -->
   <section class="reviews">
