@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
 from django.core.exceptions import ObjectDoesNotExist
 from .models import (
+    Available_For,
     Crousal,
     Category,
     Item,
@@ -27,9 +28,10 @@ def landing(request):
     tags = metaTags.objects.all()
     reviews = Review.objects.all()
     context = {
+        'available_for':Available_For.objects.all(),
         'crousal':crousal,
         'items':items,
-        'category':category,
+        'category':Category,
         'tag': tags,
         'review': reviews,
     }
