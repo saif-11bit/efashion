@@ -614,3 +614,63 @@ hr.style5 {
   background-color: var(--seconMainBgCol);
 }
 /* Cart CSS Ends  */
+/* Checkout CSS Begins  */
+.checkoutSec{
+  width: 100%;
+  height: auto;
+  margin-bottom: 2rem;
+}
+
+.selectAddressRadioTitle{
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin-bottom: 0rem;
+  color: var(--seconMainBgCol);
+}
+
+.addressHref,.addressHrefSubmit{
+  color: #ffffff !important;
+  background-color:var(--seconMainBgCol);
+  font-size: 1rem;
+  font-weight: 500;
+  width: 100%;
+}
+.addressEditlogo{
+  color: #feda0a !important;
+}
+
+.addressLogo {
+  color: #feda0a !important;
+}
+
+.checkoutAddaddress{
+  width: 100%;
+}
+
+.Promoforminput{
+  border: 2px solid var(--seconMainBgCol)!important;
+}
+
+.redeemNowBtn{
+  background-color: var(--seconMainBgCol)!important;
+  color: #ffffff;
+}
+
+.badgetotalCart{
+  background-color: var(--seconMainBgCol);
+}
+
+.yourCartTitleCheckout{
+  color: var(--seconMainBgCol);
+}
+
+.proceedBtnCheckout{
+  background-color: var(--seconMainBgCol);
+  color: #ffffff;
+  width: 100%;
+  margin-top: 2rem;
+}
+.proceedBtnCheckout:hover{
+  color: #ffffff;
+}
+/* Checkout CSS Ends  */
