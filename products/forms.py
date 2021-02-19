@@ -20,9 +20,3 @@ class CheckoutForm(forms.Form):
 # 		'aria-label':"Recipient's username",
 # 		'aria-describedby':"basic-addon2"
 # 	}))
-
-
-class CreateUserForm(UserCreationForm):
-    class Meta:
-        model = User
-        fields = ['username', 'email', 'password1', 'password2']
