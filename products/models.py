@@ -24,7 +24,6 @@ class Category(models.Model):
     title = models.CharField(max_length=200)
     poster = models.ImageField(upload_to='Category Poster', null=True)
     _for = models.ForeignKey(Available_For, on_delete=models.CASCADE, null=True)
-    # _for = models.CharField(max_length=200, choices=FOR, null=True)
 
     def __str__(self):
         return f'{self._for}-{self.title}'
@@ -41,11 +40,16 @@ class Item(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     p_name = models.CharField(max_length=200)
     p_image = models.ImageField(upload_to='Items')
-    second_img = models.ImageField(upload_to='Second Img', null=True)
-    third_img = models.ImageField(upload_to='Third Img', null=True)
+    second_img = models.ImageField(upload_to='Second Img', null=True, blank=True)
+    third_img = models.ImageField(upload_to='Third Img', null=True, blank=True)
     p_price = models.IntegerField()
     p_dis_price = models.IntegerField()
     p_desc = models.TextField()
+    small_size = models.BooleanField(null=True)
+    medium_size = models.BooleanField(null=True)
+    large_size = models.BooleanField(null=True)
+    xl_size = models.BooleanField(null=True)
+    xxl_size = models.BooleanField(null=True)
     p_slug = models.SlugField(max_length=200)
 
     def __str__(self):

@@ -45,25 +45,31 @@
               Select Size
             </p>
             <div class="radio-toolbar">
+            {% if item.small_size %}
               <input type="radio" id="radioSmall" name="radioSize" value="apple" checked>
               <label for="radioSmall">S</label>
-          
+            {% endif %}
+            {% if item.medium_size %}
               <input type="radio" id="radioMedium" name="radioSize" value="banana">
               <label for="radioMedium">M</label>
-          
+            {% endif %}
+            {% if item.large_size %}
               <input type="radio" id="radioLarge" name="radioSize" value="orange">
               <label for="radioLarge">L</label>
-              
+            {% endif %}
+            {% if item.xl_size %}
               <input type="radio" id="radioXLarge" name="radioSize" value="grapes">
               <label for="radioXLarge">XL</label>
-    
+            {% endif %}
+            {% if item.xxl_size %}
               <input type="radio" id="radio2XLarge" name="radioSize" value="guvava">
               <label for="radio2XLarge">2XL</label>
+            {% endif %}
             </div>
-            <button class="mt-3 mb-3 btn btn-primary addToCart">
+            <a class="mt-3 mb-3 btn btn-primary addToCart" href="{% url 'add-to-cart' item.id %}">
               Add To Cart
               <i class="fa fa-cart-plus " aria-hidden="true"></i>
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -82,10 +88,12 @@
       <div class="row">
         {% for i in related_item %}
         <div class="col-lg-3 col-md-3 col-6">
+          <a href="{% url 'product-detail' i.id %}">
           <img src="{{i.p_image.url}}" class="img-fluid similarProductCardImg" alt="">
           <p class="similarProductCardTitle text-center">
             {{i.p_name}}
           </p>
+        </a>
         </div>
         {% endfor %}
       </div>

@@ -105,14 +105,14 @@ def add_to_cart(request, id):
         else:
             order.items.add(order_item)
             messages.info(request, "This item was added to the cart.")
-            return redirect('products:product-detail', id=id)
+            return redirect('product-detail', id=id)
 
     else:
         ordered_date = timezone.now()
         order = Order.objects.create(user=request.user, ordered_date=ordered_date)
         order.items.add(order_item)
         messages.info(request, "This item was added to the cart.")
-        return redirect('products:product-detail', id=id)
+        return redirect('product-detail', id=id)
 
 
 # Remove from cart
