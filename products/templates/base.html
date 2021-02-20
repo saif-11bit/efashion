@@ -42,11 +42,14 @@
         <ul class="navbar-nav ml-auto">
           {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link navAnchorItem" href="{% url 'Logout' %}">Logout</a>
+            <form method="post" action="{% url 'account_logout' %}">
+              {% csrf_token %}       
+                <button type="submit" class="btn btn-link navAnchorItem">Logout</a>
+            </form>
           </li>
           {% else %}
           <li class="nav-item">
-            <a class="nav-link navAnchorItem" href="{% url 'Login' %}">Login | Signup</a>
+            <a class="nav-link navAnchorItem" href="{% url 'account_login' %}">Login | Signup</a>
           </li>
           {% endif %}
           <li class="nav-item">
@@ -70,6 +73,7 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/7a10e3388d.js" crossorigin="anonymous"></script>
+  
 </body>
 
 </html>
