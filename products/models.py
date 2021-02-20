@@ -57,10 +57,18 @@ class Item(models.Model):
 
 
 class OrderItem(models.Model):
+    SIZE_OPTION = [
+        ('S', 'S'),
+        ('M', 'M'),
+        ('L', 'L'),
+        ('XL', 'XL'),
+        ('2XL', '2XL'),
+    ]
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     ordered = models.BooleanField(default=False)
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
+    size = models.CharField(max_length=100, choices=SIZE_OPTION, null=True)
 
     def __str__(self):
         return f"{self.quantity} of {self.item.p_name}"

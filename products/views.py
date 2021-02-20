@@ -22,6 +22,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 
+
 # Landing page view
 def landing(request):
     crousal = Crousal.objects.all()
@@ -83,32 +84,55 @@ def product_detail(request, id):
     return render(request, 'productDes.html', context)
 
 
+# cart
+@login_required
+def cart_view(request):
+    try:
+        cart_items = Order.objects.get(user=request.user, ordered=False)
+        context = {
+            'cart':cart_items,
+        }
+        return render(request, 'cart.html', context)
+    except ObjectDoesNotExist:
+        messages.info(request, "No item in your cart!")
+        return redirect('/')
+
 
 # Add to Cart
 @login_required
 def add_to_cart(request, id):
+    if request.method == 'POST':
+        p_size = request.POST['p_size']
+        p_qty = request.POST['p_qty']
+        
     item = get_object_or_404(Item, id=id)
     order_item, created = OrderItem.objects.get_or_create(
         item=item,
         user=request.user,
-        ordered=False
+        ordered=False,
+        size=p_size,
     )
     order_qs = Order.objects.filter(user=request.user, ordered=False)
     if order_qs.exists():
         order = order_qs[0]
         # check if order items in the order
-        if order.items.filter(item__id=item.id).exists():
-            order_item.quantity += 1
+        if order.items.filter(item__id=item.id, size=p_size).exists():
+            order_item.quantity = int(p_qty)
             order_item.save()
-            messages.info(request, "The item quantity was updated.")
-            return redirect('/')
+            messages.info(request, "The item updated!")
+            return redirect('cart')
         else:
+            order_item.quantity = int(p_qty)
+            order_item.save()
             order.items.add(order_item)
             messages.info(request, "This item was added to the cart.")
             return redirect('product-detail', id=id)
 
     else:
         ordered_date = timezone.now()
+        order_item.quantity = int(p_qty)
+        order_item.size = p_size
+        order_item.save()
         order = Order.objects.create(user=request.user, ordered_date=ordered_date)
         order.items.add(order_item)
         messages.info(request, "This item was added to the cart.")
@@ -117,7 +141,7 @@ def add_to_cart(request, id):
 
 # Remove from cart
 @login_required
-def remove_from_cart(request, id):
+def remove_from_cart(request, id, size):
     item = get_object_or_404(Item, id=id)
     order_qs = Order.objects.filter(user=request.user, ordered=False)
     if order_qs.exists():
@@ -127,7 +151,8 @@ def remove_from_cart(request, id):
             order_item =OrderItem.objects.filter(
                 item=item,
                 user=request.user,
-                ordered=False
+                ordered=False,
+                size=size,
             )[0]
 
             order_item.quantity = 1
@@ -135,16 +160,16 @@ def remove_from_cart(request, id):
             
             order.items.remove(order_item)
             messages.info(request, "This item was removed from your cart.")
-            return redirect('/')
+            return redirect('cart')
         else:
             # order doesn't contain this order item
             messages.info(request, "This item was not in your cart.")
-            return redirect('products:product-detail', id=id)
+            return redirect('product-detail', id=id)
             
     else:
         # user doesn't have an order
         messages.info(request, "You donot have active order.")
-        return redirect('products:product-detail', id=id)
+        return redirect('product-detail', id=id)
 
 
 # Remove single from cart
@@ -167,7 +192,7 @@ def remove_single_from_cart(request, id):
             else:
                 order.items.remove(order_item)
             messages.info(request, "This item quantity was updated!")
-            return redirect('/')
+            return redirect('cart')
         else:
             # order doesn't contain this order item
             messages.info(request, "This item was not in your cart.")
@@ -208,11 +233,11 @@ class CheckoutView(LoginRequiredMixin,View):
             if address_qs.exists():
                 context.update( {'default_address': address_qs.last()} )
 
-            return render(self.request, 'checkout-page.html', context)
+            return render(self.request, 'checkout.html', context)
 
         except ObjectDoesNotExist:
             messages.info(self.request, "You donot have an active order!")
-            return redirect('products:checkout')
+            return redirect('checkout')
 
 
     def post(self, *args, **kwargs):
