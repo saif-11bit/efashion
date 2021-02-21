@@ -116,12 +116,12 @@ class Order(models.Model):
 
 class Address(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    street_address = models.CharField(max_length=200)
-    address_line2 = models.CharField(max_length=200)
-    state = models.CharField(max_length=50)
-    city = models.CharField(max_length=50)
-    pin_code = models.CharField(max_length=6)
-    default = models.BooleanField(default=False)
+    name = models.CharField(max_length=200)
+    phone_n = models.IntegerField(null=True)
+    street_address = models.CharField(max_length=200,null=True)
+    state = models.CharField(max_length=50,null=True)
+    city = models.CharField(max_length=50,null=True)
+    pin_code = models.CharField(max_length=6,null=True)
 
     def __str__(self):
         return self.street_address
@@ -131,11 +131,12 @@ class Address(models.Model):
 
 
 class CouponCode(models.Model):
-    code = models.CharField(max_length=15)
+    code = models.CharField(max_length=15, unique=True)
     valid_from = models.DateTimeField(null=True, blank=True)
     valid_to = models.DateTimeField(null=True, blank=True)
     amount = models.FloatField()
     active = models.BooleanField(default=True)
+    used = models.IntegerField(default=0)
 
     def __str__(self):
         return self.code

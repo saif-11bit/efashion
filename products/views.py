@@ -18,6 +18,7 @@ from .models import (
     Review,
 )
 from .forms import CheckoutForm
+# from django.db.models import F
 # Create your views here.
 
 
@@ -213,23 +214,21 @@ def is_valid_form(values):
 class CheckoutView(LoginRequiredMixin,View):
     def get(self,*args, **kwargs):
         # form
-        form = CheckoutForm()
 
         try:
             order= Order.objects.get(user=self.request.user, ordered=False)
             context = {
-                'form': form,
                 'order':order,
                 # 'couponForm':CouponForm(),
             }
 
             address_qs = Address.objects.filter(
                 user=self.request.user,
-                default=True,
+                # default=True,
             )
             
             if address_qs.exists():
-                context.update( {'default_address': address_qs.last()} )
+                context.update( {'address': address_qs.all()} )
 
             return render(self.request, 'checkout.html', context)
 
@@ -237,78 +236,53 @@ class CheckoutView(LoginRequiredMixin,View):
             messages.info(self.request, "You donot have an active order!")
             return redirect('checkout')
 
-
-    def post(self, *args, **kwargs):
-        form = CheckoutForm(self.request.POST or None)
-        try:
-            order = Order.objects.get(user=self.request.user, ordered=False)
-            if form.is_valid():
-                use_default_address = form.cleaned_data.get('use_default_address')
-                if use_default_address:
-                    print('Using default address!')
-                    address_qs = Address.objects.filter(
-                        user=self.request.user,
-                        default=True,
-                    )
-                    if address_qs.exists():
-                        address = address_qs.first()
-                        order.address=address
-                        order.save()						
-                    else:
-                        messages.info(self.request, 'No default address available!')
-                        return redirect('checkout')
-                else:
-                    # print('user is entering new shipping address!')
-                    street_address = form.cleaned_data.get('street_address')
-                    address_line2 = form.cleaned_data.get('address_line2')
-                    state = form.cleaned_data.get('state')
-                    city = form.cleaned_data.get('city')
-                    pin_code = form.cleaned_data.get('pin_code')
-                    
-
-                    if is_valid_form([street_address,state,city,pin_code]):		
-
-                        address=Address(
-                            user=self.request.user,street_address=street_address,address_line2=address_line2,state=state,city=city,pin_code=pin_code
-                        )
-                        address.save()
-
-                        order.address=address
-                        order.save()
-
-                        set_default_address = form.cleaned_data.get('set_default_address')
-                        if set_default_address:
-                            address.default = True
-                            address.save()
-
-                    else:
-                        messages.info(self.request, 'Please fill required Address fields!')
-
-                return redirect('/')
-
-        except ObjectDoesNotExist:
-            messages.warning(self.request, "You donot have an active order")
-            return redirect("/")
-
+# ===================
 
 # check if coupon exists
-def get_coupon(request, code):
+def get_coupon(request, coupon):
     now = timezone.now()
-    coupon = CouponCode.objects.get(code__iexact=code, valid_from__lte=now, valid_to__gte=now,active=True)
+    coupon = CouponCode.objects.filter(code__iexact=coupon, valid_from__lte=now, valid_to__gte=now,active=True).exclude(order__user=request.user)
     if coupon.exists():
-        return coupon
+        return coupon.first()
 
 
 # add Coupon
+@login_required
 def add_coupon(request):
-    try:
-        coupon = request.POST['coupon']
-        coup = get_coupon(coupon)
-        order= Order.objects.get(user=request.user, ordered=False)
-        order.coupon = coup
-        order.save()
-        messages.success(request, "Successfully Added Coupon!")
-        return redirect("products:checkout")
-    except ObjectDoesNotExist:
-        messages.info(request, "You donot have an active order!")
-        return redirect("products:checkout")
+    if request.method=='POST':
+        try:
+            coupon = request.POST['coupon']
+            print(coupon)
+            coup = get_coupon(request, coupon)
+            order= Order.objects.get(user=request.user, ordered=False)
+            order.coupon = coup
+            order.save()
+            messages.success(request, "Successfully Added Coupon!")
+            return redirect("checkout")
+        except ObjectDoesNotExist:
+            messages.info(request, "You donot have an active order!")
+            return redirect("checkout")
+
+
+@login_required
+def add_address(request):
+    if request.method=='POST':
+        user = request.user
+        name = request.POST['name']
+        phone_n = request.POST['phone_n']
+        street_address = request.POST['street_address']
+        city = request.POST['city']
+        state = request.POST['state']
+        pin_code = request.POST['pin_code']
+
+        address = Address()
+        address.user = user
+        address.name = name
+        address.phone_n = phone_n
+        address.street_address = street_address
+        address.city = city
+        address.state = state
+        address.pin_code = pin_code
+        address.save()
+
+        return redirect('/checkout/')
