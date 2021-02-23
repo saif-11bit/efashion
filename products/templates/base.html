@@ -38,6 +38,11 @@
           <li class="nav-item">
             <a class="nav-link navAnchorItem" href="{% url 'landing' %}#KIDSparticularCategoriesSecId">KIDS</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link navAnchorItem"data-toggle="collapse" href="#searchItem" role="button" aria-expanded="false" aria-controls="searchItem">
+              <i class="fa fa-search cartlogo" aria-hidden="true"></i>
+            </a>
+          </li>
         </ul>
         <ul class="navbar-nav ml-auto">
           {% if user.is_authenticated %}
@@ -62,6 +67,24 @@
     </div>
   </nav>
   <!-- Navbar Ends  -->
+  <!-- Search Begins -->
+  <div class="collapse" id="searchItem">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2 col-12">
+          <form action="{% url 'search' %}" method="GET" >
+            <div class="input-group blogBar mt-3 mb-3">
+              <input type="search" class="form-control searchInput" name="search" placeholder="Search Products" required>
+              <div class="input-group-append">
+                <input class="input-group-text subscribeText" type="submit" value="Submit">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Search Ends -->
     {% block mainCont %}{% endblock mainCont %}
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="

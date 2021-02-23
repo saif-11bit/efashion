@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% block mainCont %}
+<!-- Searched Item Begins  -->
+<section class="searchedItem">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-12">
+                <p class="text-center categoriesMainTitle">
+                    Results:
+                </p>
+                <hr class="style5">
+            </div>
+        </div>
+        <div class="row">
+            {% for i in prod %}
+             <div class="col-lg-3 col-md-6 col-6">
+                <a href="{% url 'product-detail' i.id %}">
+                    <img src="{{ i.p_image.url }}" class="img-fluid productSecCardImage" alt="{{ i.p_name }}">
+                    <p class="text-center productSecCardTitle">
+                        {{ i.p_name }}
+                    </p>
+                    <p class="text-center productSecCardPrice">
+                        {{ i.p_price }}
+                    </p>
+                </a>
+            </div>
+            {% endfor %} 
+        </div>
+    </div>
+</section>
+<!-- Searched Item Ends  -->
+{% include 'footer.html' %} {% endblock mainCont %}

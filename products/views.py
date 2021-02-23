@@ -65,7 +65,7 @@ def search_item(request):
     context = {
         'prod':prod
     }
-    return render(request, 'search.html', context)
+    return render(request, 'searchedItem.html', context)
 
 
 # Prodcut detail
