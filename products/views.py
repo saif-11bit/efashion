@@ -286,3 +286,12 @@ def add_address(request):
         address.save()
 
         return redirect('/checkout/')
+
+@login_required
+def myorders(request):
+    myorder = OrderItem.objects.filter(user=request.user,ordered=True)
+    print(request.user)
+    context = {
+        'order': myorder,
+    }
+    return render(request, 'myorders.html', context)

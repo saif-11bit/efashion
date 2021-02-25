@@ -10,65 +10,37 @@
         </div>
       </div>
       <div class="row">
+        {% for i in order %}
         <div class="col-lg-6 col-md-10 col-12 m-auto">
           <div class="card cartSecCard">
             <div class="row">
               <div class="col-lg-4 col-md-4 col-4">
-                <a href="#">
-                <img src="{%static 'image/shirwani.jpg' %}" class="img-fluid cartSecCardImage" alt="">
+                <a href="{% url 'product-detail' i.item.id %}">
+                <img src="{{ i.item.p_image.url }}" class="img-fluid cartSecCardImage" alt="{{ i.item.p_name }}">
                 </a>
               </div>
               <div class="col-lg-8 col-md-8 col-8">
-                <a href="#">
+                <a href="{% url 'product-detail' i.item.id %}">
                 <p class="card-title cartSecCardTitle">
-                  Modern Day Shirwani 
+                  {{ i.item.p_name }} 
                 </p>
               </a>
                 <p class="cartSecCardPrice">
-                  ₹7999
+                  ₹{{ i.item.p_price }}
                 </p>
                 <p class="cartSecCardSize">
                   Size: <strong>S</strong>
                 </p>
                 <p class="cartSecCardPara d-none d-sm-none d-md-block d-lg-block">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  obcaecati laboriosam.. <a href="#">view more</a>
+                  {{ i.item.p_desc|slice:"0:72" }}... <a href="{% url 'product-detail' i.item.id %}">view more</a>
                 </p>
                 <button class="btn cartSecCardBtn">Buy Item <i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-lg-6 col-md-10 col-12 m-auto">
-          <div class="card cartSecCard">
-            <div class="row">
-              <div class="col-lg-4 col-md-4 col-4">
-                <a href="#">
-                <img src="{%static 'image/shirwani.jpg' %}" class="img-fluid cartSecCardImage" alt="">
-                </a>
-              </div>
-              <div class="col-lg-8 col-md-8 col-8">
-                <a href="#">
-                <p class="card-title cartSecCardTitle">
-                  Modern Day Shirwani 
-                </p>
-              </a>
-                <p class="cartSecCardPrice">
-                  ₹7999
-                </p>
-                <p class="cartSecCardSize">
-                  Size: <strong>S</strong>
-                </p>
-                <p class="cartSecCardPara d-none d-sm-none d-md-block d-lg-block">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  obcaecati laboriosam.. <a href="#">view more</a>
-                </p>
-                <button class="btn cartSecCardBtn">Buy Again<i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
-              </div>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
       </div>
     </div>
   </section>
-{% include 'footer.html' %} {% endblock mainCont %}
+{% endblock mainCont %}
