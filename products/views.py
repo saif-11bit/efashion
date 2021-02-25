@@ -290,7 +290,6 @@ def add_address(request):
 @login_required
 def myorders(request):
     myorder = OrderItem.objects.filter(user=request.user,ordered=True)
-    print(request.user)
     context = {
         'order': myorder,
     }

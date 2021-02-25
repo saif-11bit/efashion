@@ -633,8 +633,40 @@ hr.style5 {
   color: #ffffff;
 }
 /* Checkout CSS Ends  */
+/* If No Order CSS Begins  */
+.myOrdersSec{
+  width: 100%;
+  height: auto;
+  margin-bottom: 4rem;
+}
+.noMyOrders{
+  font-size: 2.4rem;
+  color: var(--seconMainBgCol);
+  line-height: 1.2;
+  font-weight: 600;
+  margin-top: 3rem;
+}
 
+.shopNowBtn{
+  border: 2px solid var(--seconMainBgCol);
+  border-radius: 6rem;
+  margin: 0 0.4rem;
+  padding: 1rem 1.5rem;
+  outline: none;
+  background: var(--seconMainBgCol);
+  color: #ffffff !important;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  margin-top: 1rem;
+}
 
+.undrawImage{
+  height: 20rem;
+  width: 100%;
+}
+/* If No Order CSS Ends  */
 @media(max-width: 399px){
   .nav-item{
       text-align: center!important;      
