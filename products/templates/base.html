@@ -67,13 +67,12 @@
               <i class="fa fa-user cartlogo" aria-hidden="true"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-sm-right" aria-labelledby="navbarDropdown">
+              
+              {% if user.is_authenticated %}
               <a class="dropdown-item" href="{% url 'myorder' %}">My Orders</a>
               <a class="dropdown-item" href="track.html">Track Order</a>
-              <a class="dropdown-item" href="refund.html">Return/Refund</a>
-              <a class="dropdown-item" href="#">Settings</a>
+              <a class="dropdown-item" href="{% url 'return' %}">Return/Refund</a>
               <div class="dropdown-divider"></div>
-              {% if user.is_authenticated %}
-              
                 <form method="post" action="{% url 'account_logout' %}">
                   {% csrf_token %}       
                     <button type="submit" class="btn btn-link dropdown-item">Logout</a>

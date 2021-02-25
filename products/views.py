@@ -16,6 +16,7 @@ from .models import (
     Address,
     CouponCode,
     Review,
+    Refund,
 )
 from .forms import CheckoutForm
 # from django.db.models import F
@@ -294,3 +295,12 @@ def myorders(request):
         'order': myorder,
     }
     return render(request, 'myorders.html', context)
+
+@login_required
+def returnorder(request):
+    myorder = OrderItem.objects.filter(user=request.user,ordered=True)
+    #Ye Banana hai
+    context = {
+        'order': myorder,
+    }
+    return render(request, 'refund.html', context)

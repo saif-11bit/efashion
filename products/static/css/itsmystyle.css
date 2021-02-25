@@ -667,6 +667,18 @@ hr.style5 {
   width: 100%;
 }
 /* If No Order CSS Ends  */
+/* Return CSS Begins */
+.refundSec{
+  width: 100%;
+  height: auto;
+  margin-bottom: 4rem;
+}
+.yesConfirmModalBtn{
+  color: #ffffff;
+  background-color: var(--seconMainBgCol) !important;
+}
+/* Return CSS Ends */
+
 @media(max-width: 399px){
   .nav-item{
       text-align: center!important;      
