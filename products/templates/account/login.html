@@ -2,35 +2,37 @@
 {% block mainCont %}
 {% load crispy_forms_tags %}
 {% load socialaccount %}
-    <!-- Login Form Begins  -->
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-5 col-md-7 col-sm-9 mx-auto">
-                <div class="card cardSignin">
-                    <div class="card-body">
-                        <div class="card-title text-center">
-                            Login
-                        </div>
-                        <form class="form-signin" method="POST" action="{% url 'account_login' %}">
+<!-- Login Form Begins  -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-5 col-md-7 col-sm-9 mx-auto">
+            <div class="card cardSignin">
+                <div class="card-body">
+                    <div class="card-title text-center">
+                        Login
+                    </div>
+                    <form class="form-signin" method="POST" action="{% url 'account_login' %}">
                         {% csrf_token %}
                         {{ form|crispy }}
-                            <button class="btn btn-lg btn-primary btn-block text-uppercase submitBtnLogin"
-                             type="submit">Login</button>
-                            </form>
-                            <hr class="hr-text" data-content="OR">
-                                <a class="btn btn-google btn-block socialBtnSignIn" 
-                                href="{% provider_login_url 'google' %}">
-                                <i class="fab fa-google mr-2"></i> 
-                                Sign in with Google
-                                </a>
-                            <hr class="hr-text" data-content="New Member?">
-                            <a class="btn btn-lg btn-primary btn-block text-uppercase submitBtnLogin"
-                                href="{% url 'account_signup' %}">SignUp</a>
-                          
+                        <button class="btn btn-lg btn-primary btn-block text-uppercase submitBtnLogin"
+                            type="submit">Login</button>
+                    </form>
+                    <div class="text-center justify-content-center mt-2">
+                        <a class="text-white" href="{% url 'account_reset_password'%}">Forgot Password?</a>
                     </div>
+                    <hr class="hr-text" data-content="OR">
+                    <a class="btn btn-google btn-block socialBtnSignIn" href="{% provider_login_url 'google' %}">
+                        <i class="fab fa-google mr-2"></i>
+                        Sign in with Google
+                    </a>
+                    <hr class="hr-text" data-content="New Member?">
+                    <a class="btn btn-lg btn-primary btn-block text-uppercase submitBtnLogin"
+                        href="{% url 'account_signup' %}">SignUp</a>
+
                 </div>
             </div>
         </div>
     </div>
-    <!-- Login Form Ends  -->
+</div>
+<!-- Login Form Ends  -->
 {% endblock mainCont %}
