@@ -163,3 +163,13 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+
+PAYTM_COMPANY_NAME = "Company Name"   # For representation purposes
+PAYTM_INDUSTRY_TYPE_ID = "Retail"     # For staging environment
+PAYTM_CHANNEL_ID = "WEB"
+PAYTM_MERCHANT_KEY = "93qNe8tilsQ#lRZF"
+PAYTM_MERCHANT_ID = "HfKriD51399168057005"
+PAYTM_CALLBACK_URL = "http://127.0.0.1:8000/response/" # Hardcode
+PAYTM_WEBSITE = "WEBSTAGING"
+PAYTM_PAYMENT_GATEWAY_URL = "https://securegw-stage.paytm.in/order/process"
+PAYTM_TRANSACTION_STATUS_URL = "https://securegw-stage.paytm.in/order/status"

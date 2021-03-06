@@ -96,7 +96,7 @@ class Order(models.Model):
     ordered_date = models.DateTimeField()
     ordered = models.BooleanField(default=False)
     address = models.ForeignKey('Address', on_delete=models.SET_NULL, null=True, blank=True)
-    # payment = models.ForeignKey('Payment', on_delete=models.SET_NULL, null=True, blank=True)
+    payment = models.ForeignKey('Payment', on_delete=models.SET_NULL, null=True, blank=True)
     coupon = models.ForeignKey('CouponCode', on_delete=models.SET_NULL, null=True, blank=True)
     being_delivered = models.BooleanField(default=False)
     recieved = models.BooleanField(default=False)
@@ -165,4 +165,12 @@ class Review(models.Model):
     
     def __str__(self):
         return self.name
-    
+
+
+class Payment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
+    amount = models.IntegerField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user}"

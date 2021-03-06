@@ -14,6 +14,9 @@ from .views import (
     cart_view,
     add_address,
     add_coupon,
+    payment,
+    response,
+    success,
 )
 
 
@@ -22,6 +25,9 @@ urlpatterns = [
     path('', landing, name="landing"),
     path('search/', search_item, name="search"),
     path('cart/', cart_view, name="cart"),
+    path('payment/', payment,name="payment"),
+    path('success/', success,name="success"),
+    path('response/', response, name="response"),
     path('add-coupon/', add_coupon, name="add-coupon"),
     path('add-address/', add_address, name="add-address"),
     path('category/<int:id>/', category_item, name="category"),
