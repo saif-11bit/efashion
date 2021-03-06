@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
-{% block title %}My Orders - EfashionBazaar{% endblock title %}
+{% block title %}Refund - EfashionBazaar{% endblock title %}
 {% block mainCont %} {% load static %}
-<section class="myOrdersSec">
+<section class="refundSec">
   <div class="container">
     <div class="row">
       <div class="col-lg-12 col-12">
         <p class="text-center categoriesMainTitle">
-          My Orders
+          Refund Order
         </p>
         <hr class="style5">
       </div>
@@ -37,9 +37,36 @@
               <p class="cartSecCardPara d-none d-sm-none d-md-block d-lg-block">
                 {{ i.item.p_desc|slice:"0:72" }}... <a href="{% url 'product-detail' i.item.id %}">view more</a>
               </p>
-              <button class="btn cartSecCardBtn">Buy Item <i class="fa fa-shopping-cart"
-                  aria-hidden="true"></i></button>
+              <button class="btn cartSecCardBtn" data-toggle="modal" data-target="#exampleModal">Return Order <i
+                  class="fa fa-shopping-cart" aria-hidden="true"></i></button>
             </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Return {{ i.item.p_name }}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form method="POST">
+              {% csrf_token %}
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="whyReturn">Reason to return?</label>
+                  <textarea class="form-control" name="reason" id="whyReturn" rows="3"></textarea>
+                  <small id="helpId" class="form-text text-muted">Provide satisfying answer.</small>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No, I don't</button>
+                <button type="submit" class="btn btn-primary yesConfirmModalBtn">Yes, Confirm</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -55,8 +82,8 @@
         </p>
       </div>
       {% endif %}
-
     </div>
   </div>
 </section>
+
 {% endblock mainCont %}

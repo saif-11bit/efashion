@@ -45,62 +45,6 @@ li {
   color: var(--mainCol);
 }
 
-.sidenav {
-  height: 100%;
-  width: 0;
-  /*Will change with javascript */
-  position: fixed;
-  z-index: 1;
-  /* Stay on top*/
-  top: 0;
-  left: 0;
-  background-color: var(--seconMainBgCol);
-  overflow-x: hidden;
-  /*Disable horizontal scroll */
-  padding-top: 60px;
-  /*Place content 60px from the top*/
-  transition: 0.25s;
-}
-
-.sidenav .closebtn {
-  color: var(--mainCol);
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
-
-.closebtn:hover {
-  color: var(--mainCol) !important;
-}
-.sidenav h3 {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: var(--sidenavtxtcol);
-  display: block;
-  transition: 0.3s;
-}
-
-.userName {
-  color: var(--mainCol);
-}
-
-.sidenav a {
-  padding: 8px 8px 2px 32px;
-  text-decoration: none;
-  font-size: 18px;
-  color: var(--sidenavtxtcol);
-  display: block;
-  transition: 0.3s;
-}
-
-.sidenav a:hover {
-  color: var(--sidenavtxtcol);
-}
-
-/* Sidebar Ends  */
 #navbarId {
   background-color: var(--seconMainBgCol);
 }
@@ -114,6 +58,10 @@ li {
 .cartlogo {
   color: var(--mainCol);
 }
+.carLogoAnchor span {
+  color: #ffffff;
+}
+
 .mainLogo {
   height: 40px !important;
   z-index: 100;
@@ -178,10 +126,10 @@ li {
   display: none;
 }
 
-.socialBtnSignIn{
+.socialBtnSignIn {
   width: 100%;
   color: var(--seconMainBgCol);
-  background-color: #ffffff;
+  background-color: #ffffff !important;
   margin-top: 1.2rem;
 }
 
@@ -435,72 +383,72 @@ hr.style5 {
 }
 /* Footer Ends  */
 /* Product CSS Begins  */
-.bannerImage{
+.bannerImage {
   width: 100%;
 }
 
-.breadcrumbClass{
+.breadcrumbClass {
   background-color: #ffffff;
 }
 
-.breadcrumbClassItem{
+.breadcrumbClassItem {
   color: var(--seconMainBgCol) !important;
   font-weight: 600;
 }
 
-.breadcrumbClassItem a{
+.breadcrumbClassItem a {
   color: var(--seconMainBgCol) !important;
 }
 
-.productSec{
+.productSec {
   width: 100%;
   height: auto;
   margin-top: 2rem;
 }
 
-.productSecCardImage{
+.productSecCardImage {
   width: 100%;
 }
 
-.productSecCardTitle{
+.productSecCardTitle {
   font-size: 1.1rem;
   font-weight: 500;
   color: var(--seconMainBgCol);
   margin-bottom: 0rem;
 }
 
-.productSecCardPrice{
+.productSecCardPrice {
   font-size: 1rem;
   font-weight: 500;
   color: var(--seconMainBgCol);
 }
 /* Product CSS Ends  */
 /* Product Des CSS Begins  */
-.productDesSec{
+.productDesSec {
   margin-top: 2rem;
   margin-bottom: 4rem;
   width: 100%;
   height: auto;
 }
 
-.productDesSecTitle{
+.productDesSecTitle {
   font-size: 1.6rem;
   font-weight: 400;
   margin-bottom: 0rem;
 }
 
-.productDesSecPrice{
+.productDesSecPrice {
   font-size: 2rem;
   font-weight: 600;
 }
 
-.productDesSecSize{
+.productDesSecSize {
   font-size: 1.2rem;
   font-weight: 500;
   margin-left: 0.8rem;
 }
 
-.productDesSecDes{
+.productDesSecDes {
   font-size: 0.9rem;
   font-weight: 500;
 }
@@ -516,13 +464,13 @@ hr.style5 {
 }
 
 .radio-toolbar label {
-    display: inline-block;
-    /* background-color: white; */
-    padding: 8px 15px;
-    font-family: sans-serif, Arial;
-    font-size: 16px;
-    border: 2px solid #ccc;
-    border-radius: 4px;
+  display: inline-block;
+  /* background-color: white; */
+  padding: 8px 15px;
+  font-family: sans-serif, Arial;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
 }
 
 .radio-toolbar label:hover {
@@ -530,26 +478,26 @@ hr.style5 {
 }
 
 .radio-toolbar input[type="radio"]:focus + label {
-    border: 2px dashed #444;
+  border: 2px dashed #444;
 }
 
 .radio-toolbar input[type="radio"]:checked + label {
-    /* background-color: #bfb; */
-    border-color:#4db6ac;
+  /* background-color: #bfb; */
+  border-color: #4db6ac;
 }
 
-.addToCart{
+.addToCart {
   width: 100%;
   background-color: var(--seconMainBgCol) !important;
   color: #ffffff;
 }
 
-.similarProductCardImg{
+.similarProductCardImg {
   width: 100%;
   height: auto;
 }
 
-.similarProductCardTitle{
+.similarProductCardTitle {
   color: var(--seconMainBgCol);
   font-size: 1.2rem;
   font-weight: 600;
@@ -557,31 +505,31 @@ hr.style5 {
 /* Product Des CSS Ends  */
 
 /* Cart CSS Begins  */
-.cartSec{
+.cartSec {
   width: 100%;
   height: auto;
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
 
-.cartSecCard{
+.cartSecCard {
   width: 100%;
   height: auto;
   margin-top: 1.2rem;
 }
 
-.cartSecCard:hover{
+.cartSecCard:hover {
   transform: translateY(-4px);
   transition-duration: 400ms;
   /* transition: [property] [duration] [timing-function] [delay]; */
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
 }
-.cartSecCardImage{
+.cartSecCardImage {
   width: 100%;
   height: 100%;
 }
 
-.cartSecCardTitle{
+.cartSecCardTitle {
   font-size: 1.4rem;
   font-weight: 600;
   line-height: 1.4;
@@ -589,64 +537,64 @@ hr.style5 {
   margin-bottom: 0rem;
 }
 
-.cartSecCardPrice{
+.cartSecCardPrice {
   font-size: 1.6rem;
   font-weight: 500;
   margin-bottom: 0rem;
   color: var(--seconMainBgCol);
 }
 
-.cartSecCardSize{
+.cartSecCardSize {
   font-size: 1rem;
   margin-bottom: 0rem;
 }
 
-.cartSecCardBtn{
+.cartSecCardBtn {
   width: 80%;
   background-color: var(--seconMainBgCol);
   border-radius: 2px solid var(--seconMainBgCol);
   color: #ffffff;
-  
 }
 
-.cartSecCardBtn:hover{
+.cartSecCardBtn:hover {
   color: #ffffff;
   background-color: var(--seconMainBgCol);
 }
 
-.checkoutNowBtn{
+.checkoutNowBtn {
   width: 100%;
   color: #ffffff;
   background-color: var(--seconMainBgCol);
 }
 
-.checkoutNowBtn:hover{
+.checkoutNowBtn:hover {
   color: #ffffff;
   background-color: var(--seconMainBgCol);
 }
 /* Cart CSS Ends  */
 /* Checkout CSS Begins  */
-.checkoutSec{
+.checkoutSec {
   width: 100%;
   height: auto;
   margin-bottom: 2rem;
 }
 
-.selectAddressRadioTitle{
+.selectAddressRadioTitle {
   font-size: 1.6rem;
   font-weight: 500;
   margin-bottom: 0rem;
   color: var(--seconMainBgCol);
 }
 
-.addressHref,.addressHrefSubmit{
+.addressHref,
+.addressHrefSubmit {
   color: #ffffff !important;
-  background-color:var(--seconMainBgCol);
+  background-color: var(--seconMainBgCol);
   font-size: 1rem;
   font-weight: 500;
   width: 100%;
 }
-.addressEditlogo{
+.addressEditlogo {
   color: #feda0a !important;
 }
 
@@ -654,34 +602,131 @@ hr.style5 {
   color: #feda0a !important;
 }
 
-.checkoutAddaddress{
+.checkoutAddaddress {
   width: 100%;
 }
 
-.Promoforminput{
-  border: 2px solid var(--seconMainBgCol)!important;
+.Promoforminput {
+  border: 2px solid var(--seconMainBgCol) !important;
 }
 
-.redeemNowBtn{
-  background-color: var(--seconMainBgCol)!important;
+.redeemNowBtn {
+  background-color: var(--seconMainBgCol) !important;
   color: #ffffff;
 }
 
-.badgetotalCart{
+.badgetotalCart {
   background-color: var(--seconMainBgCol);
 }
 
-.yourCartTitleCheckout{
+.yourCartTitleCheckout {
   color: var(--seconMainBgCol);
 }
 
-.proceedBtnCheckout{
+.proceedBtnCheckout {
   background-color: var(--seconMainBgCol);
   color: #ffffff;
   width: 100%;
   margin-top: 2rem;
 }
-.proceedBtnCheckout:hover{
+.proceedBtnCheckout:hover {
   color: #ffffff;
 }
 /* Checkout CSS Ends  */
+/* If No Order CSS Begins  */
+.myOrdersSec {
+  width: 100%;
+  height: auto;
+  margin-bottom: 4rem;
+}
+.noMyOrders {
+  font-size: 2.4rem;
+  color: var(--seconMainBgCol);
+  line-height: 1.2;
+  font-weight: 600;
+  margin-top: 3rem;
+}
+
+.shopNowBtn {
+  border: 2px solid var(--seconMainBgCol);
+  border-radius: 6rem;
+  margin: 0 0.4rem;
+  padding: 1rem 1.5rem;
+  outline: none;
+  background: var(--seconMainBgCol);
+  color: #ffffff !important;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.undrawImage {
+  height: 20rem;
+  width: 100%;
+}
+/* If No Order CSS Ends  */
+/* Return CSS Begins */
+.refundSec {
+  width: 100%;
+  height: auto;
+  margin-bottom: 4rem;
+}
+.yesConfirmModalBtn {
+  color: #ffffff;
+  background-color: var(--seconMainBgCol) !important;
+}
+/* Return CSS Ends */
+/* Account Sec Begins  */
+.accountsec {
+  width: 100%;
+  height: auto;
+  margin-top: 2rem;
+}
+.illustrator {
+  width: 100%;
+  height: 25rem;
+}
+
+.illustratorTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--seconMainBgCol);
+}
+
+.illustratorPara {
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.loginBtnIllus {
+  border: 2px solid var(--seconMainBgCol);
+  border-radius: 6rem;
+  margin: 0 0.4rem;
+  padding: 1rem 1.5rem;
+  outline: none;
+  background: var(--seconMainBgCol);
+  background: var(--seconMainBgCol);
+  color: #ffffff !important;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+}
+/* Account Sec Ends  */
+
+@media (max-width: 399px) {
+  .nav-item {
+    text-align: center !important;
+  }
+}
+
+@media (min-width: 400px) and (max-width: 576px) {
+}
+@media (min-width: 577px) and (max-width: 767px) {
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+}

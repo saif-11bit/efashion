@@ -1,14 +1,24 @@
-{% extends 'base.html' %} {% block mainCont %} {% load static %}
+{% extends 'base.html' %}
+{% block title %}Checkout - EfashionBazaar{% endblock title %}
+{% block mainCont %} {% load static %}
 <section class="checkoutSec">
   <div class="container">
     <div class="row">
       <div class="col-lg-12 col-12">
+<<<<<<< HEAD
         <p class="text-center categoriesMainTitle">Checkout</p>
         <hr class="style5" />
+=======
+        <p class="text-center categoriesMainTitle">
+          Checkout
+        </p>
+        <hr class="style5">
+>>>>>>> 048c0533a907db610df090f3fa9bae476fe08829
       </div>
     </div>
     <div class="row">
       <div class="col-lg-8 col-md-8 col-sm-12 col-12">
+<<<<<<< HEAD
         <a
           class="btn addressHref"
           data-toggle="collapse"
@@ -19,6 +29,11 @@
         >
           Add a address
           <i class="fa fa-edit addressEditlogo" aria-hidden="true"></i>
+=======
+        <a class="btn addressHref" data-toggle="collapse" href="#addaAddress" role="button" aria-expanded="false"
+          aria-controls="addaAddress">
+          Add a address <i class="fa fa-edit addressEditlogo" aria-hidden="true"></i>
+>>>>>>> 048c0533a907db610df090f3fa9bae476fe08829
         </a>
         <div class="collapse" id="addaAddress">
           <form action="{% url 'add-address' %}" method="POST">
@@ -46,6 +61,7 @@
 
             <div class="form-group">
               <label class="labelForMail" for="inputAddress">Address</label>
+<<<<<<< HEAD
               <input
                 type="text"
                 class="form-control"
@@ -53,11 +69,16 @@
                 placeholder="1234 Main St"
                 name="street_address"
               />
+=======
+              <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St"
+                name="street_address">
+>>>>>>> 048c0533a907db610df090f3fa9bae476fe08829
             </div>
 
             <div class="form-row">
               <div class="form-group col-md-4">
                 <label class="labelForMail" for="inputZip">Pin Code</label>
+<<<<<<< HEAD
                 <input
                   type="text"
                   class="form-control"
@@ -82,11 +103,23 @@
                   id="inputState"
                   name="state"
                 />
+=======
+                <input type="text" class="form-control" id="inputZip" name="pin_code">
+              </div>
+              <div class="form-group col-md-4">
+                <label class="labelForMail" for="inputCity">City</label>
+                <input type="text" class="form-control" id="inputCity" name="city">
+              </div>
+              <div class="form-group col-md-4">
+                <label class="labelForMail" for="inputState">State</label>
+                <input type="text" class="form-control" id="inputState" name="state">
+>>>>>>> 048c0533a907db610df090f3fa9bae476fe08829
                 <!-- <select id="inputState" class="form-control">
                     <option selected>Choose...</option>
                     <option>...</option>
                     </select> -->
               </div>
+<<<<<<< HEAD
             </div>
             <input type="submit" class="btn addressHrefSubmit" value="Submit" />
           </form>
@@ -146,6 +179,61 @@
               <h6 class="my-0">
                 {{order_item.item.p_name}}
                 <small class="text-muted">x {{order_item.quantity}}</small>
+=======
+
+            </div>
+            <input type="submit" class="btn addressHrefSubmit" value="Submit">
+          </form>
+        </div>
+        <p class="selectAddressRadioTitle">
+          Select Address
+        </p>
+        {% if address %}
+
+        {% for i in address %}
+        <div class="radio-toolbar">
+          <input type="radio" id="{{i.id}}" name="radioSize" value="apple" required>
+          <label for="{{i.id}}">
+            {{i.name}}
+            <br>
+            {{i.phone_n}}
+            <br>
+            {{i.street_address}}
+            <br>
+            {{i.city}}-{{i.state}}-{{i.pin_code}}
+          </label>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        <!-- <p class="selectAddressRadioTitle">
+                    Select Payment Method
+                </p>
+                <div class="radio-toolbar">
+                    <input type="radio" id="debitCard" name="radioPayment" value="apple">
+                    <label for="debitCard">Debit Card</label>
+                    <input type="radio" id="creditCard" name="radioPayment" value="banana">
+                    <label for="creditCard">Card Card</label>
+                    <input type="radio" id="paytmCard" name="radioPayment" value="banana">
+                    <label for="paytmCard">Paytm</label>
+                    <input type="radio" id="gpay" name="radioPayment" value="banana">
+                    <label for="gpay">Google Pay</label>
+                </div> -->
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+        <!-- Heading -->
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="yourCartTitleCheckout">Your cart</span>
+          <span class="badge badge-secondary badgetotalCart badge-pill">{{order.items.count}}</span>
+        </h4>
+
+        <!-- Cart -->
+        <ul class="list-group mb-3 z-depth-1">
+          {% for order_item in order.items.all %}
+          <li class="list-group-item d-flex justify-content-between lh-condensed yourcartcheckoutList">
+            <div>
+              <h6 class="my-0 "> {{order_item.item.p_name}} <small class="text-muted">x {{order_item.quantity}}</small>
+>>>>>>> 048c0533a907db610df090f3fa9bae476fe08829
               </h6>
               <!-- <small class="text-muted">Brief description</small> -->
             </div>
@@ -160,20 +248,32 @@
             </span>
             {% endif %}
           </li>
+<<<<<<< HEAD
           {% endfor %} {% if order.coupon %}
           <li
             class="list-group-item d-flex justify-content-between yourcartcheckoutList"
           >
             <div class="text-success">
               <h6 class="my-0">Promo code</h6>
+=======
+          {% endfor %}
+          {% if order.coupon %}
+          <li class="list-group-item d-flex justify-content-between yourcartcheckoutList">
+            <div class="text-success">
+              <h6 class="my-0 ">Promo code</h6>
+>>>>>>> 048c0533a907db610df090f3fa9bae476fe08829
               <small>{{order.coupon.code}}</small>
             </div>
             <span class="text-success">-${{order.coupon.amount}}</span>
           </li>
           {% endif %}
+<<<<<<< HEAD
           <li
             class="list-group-item d-flex justify-content-between yourcartcheckoutList"
           >
+=======
+          <li class="list-group-item d-flex justify-content-between yourcartcheckoutList">
+>>>>>>> 048c0533a907db610df090f3fa9bae476fe08829
             <span class="">Total (Rs)</span>
             <strong>{{order.get_total}}</strong>
           </li>
@@ -181,6 +281,7 @@
         <!-- Cart -->
 
         <!-- Promo code -->
+<<<<<<< HEAD
         <form
           class="card p-2 Promoform"
           action="{% url 'add-coupon' %}"
@@ -203,12 +304,25 @@
               >
                 Redeem
               </button>
+=======
+        <form class="card p-2 Promoform" action="{% url 'add-coupon' %}" method="POST">
+          {% csrf_token %}
+          <div class="input-group">
+            <input type="text" class="form-control Promoforminput" placeholder="Promo code"
+              aria-label="Recipient's username" aria-describedby="basic-addon2" name="coupon">
+            <div class="input-group-append">
+              <button class="btn btn-secondary redeemNowBtn btn-md waves-effect m-0" type="submit">Redeem</button>
+>>>>>>> 048c0533a907db610df090f3fa9bae476fe08829
             </div>
           </div>
         </form>
         <!-- Promo code -->
       </div>
     </div>
+<<<<<<< HEAD
+=======
+    <input type="submit" class="btn proceedBtnCheckout" value="Proceed To Pay">
+>>>>>>> 048c0533a907db610df090f3fa9bae476fe08829
   </div>
 </section>
 {% endblock mainCont %}

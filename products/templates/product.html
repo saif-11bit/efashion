@@ -1,10 +1,8 @@
-{% extends 'base.html' %} {% block mainCont %} {% load static %}
+{% extends 'base.html' %}
+{% block title %}Product - EfashionBazaar{% endblock title %}
+{% block mainCont %} {% load static %}
 <section class="banner">
-  <img
-    src="{% static 'image/taiyaarcoll_banner1.jpg' %}"
-    class="img-fluid bannerImage"
-    alt=""
-  />
+  <img src="{% static 'image/taiyaarcoll_banner1.jpg' %}" class="img-fluid bannerImage" alt="" />
   <nav aria-label="breadcrumb">
     <div class="container-fluid">
       <ol class="breadcrumb breadcrumbClass">
@@ -12,11 +10,9 @@
           <a href="/">Home</a>
         </li>
         <li class="breadcrumb-item breadcrumbClassItem"><a href="/">Men</a></li>
-        <li
-          class="breadcrumb-item breadcrumbClassItem active"
-          aria-current="page"
-        ><a href="{% url 'category' cate.id %}">
-        {{cate.title}}</a>
+        <li class="breadcrumb-item breadcrumbClassItem active" aria-current="page"><a
+            href="{% url 'category' cate.id %}">
+            {{cate.title}}</a>
         </li>
       </ol>
     </div>
@@ -35,11 +31,7 @@
       {% for i in items %}
       <div class="col-lg-3 col-md-6 col-6">
         <a href="{% url 'product-detail' i.id %}">
-          <img
-            src="{{i.p_image.url}}"
-            class="img-fluid productSecCardImage"
-            alt=""
-          />
+          <img src="{{i.p_image.url}}" class="img-fluid productSecCardImage" alt="" />
           <p class="text-center productSecCardTitle">{{i.p_name}}</p>
           <p class="text-center productSecCardPrice">₹{{i.p_price}}</p>
         </a>

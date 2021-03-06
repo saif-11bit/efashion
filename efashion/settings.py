@@ -135,6 +135,14 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
+# Email settings 
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = 'itsmeanas69@gmail.com'
+EMAIL_HOST_PASSWORD = 'kpoeprgbxhsbjjfo' #kpoeprgbxhsbjjfo
+EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = False
+
 AUTHENTICATION_BACKENDS = (
  'django.contrib.auth.backends.ModelBackend',
  'allauth.account.auth_backends.AuthenticationBackend',
@@ -142,13 +150,14 @@ AUTHENTICATION_BACKENDS = (
 
 SITE_ID = 1
 ACCOUNT_EMAIL_REQUIRED= True
-# ACCOUNT_EMAIL_VERIFICATION  = "mandatory"
+ACCOUNT_EMAIL_VERIFICATION  = "mandatory"
+ACCOUNT_USERNAME_REQUIRED = True
 # ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = False
 LOGIN_REDIRECT_URL = '/'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login'
 ACCOUNT_AUTHENTICATION_METHOD= "username_email"
-ACCOUNT_USERNAME_MIN_LENGTH = 4
+ACCOUNT_USERNAME_MIN_LENGTH = 3
 ACCOUNT_SESSION_REMEMBER = True
 # 689889426478-s41c3jbaj5b9031asm3dscd4m0smgu45.apps.googleusercontent.com
 # AugEQ6zHIej3znAhIVEywwIb
@@ -164,6 +173,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
+<<<<<<< HEAD
 PAYTM_COMPANY_NAME = "Company Name"   # For representation purposes
 PAYTM_INDUSTRY_TYPE_ID = "Retail"     # For staging environment
 PAYTM_CHANNEL_ID = "WEB"
@@ -173,3 +183,5 @@ PAYTM_CALLBACK_URL = "http://127.0.0.1:8000/response/" # Hardcode
 PAYTM_WEBSITE = "WEBSTAGING"
 PAYTM_PAYMENT_GATEWAY_URL = "https://securegw-stage.paytm.in/order/process"
 PAYTM_TRANSACTION_STATUS_URL = "https://securegw-stage.paytm.in/order/status"
+=======
+>>>>>>> 048c0533a907db610df090f3fa9bae476fe08829

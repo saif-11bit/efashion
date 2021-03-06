@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 {% load static %}
+
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -17,7 +18,7 @@
   <!-- LOGO  -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <title>eFashionBazar</title>
+  <title>{% block title %} {% endblock title %}</title>
 </head>
 
 <body>
@@ -26,7 +27,9 @@
     <div class="container-fluid">
       <a class="navbar-brand" href="{% url 'landing' %}">eFashionBazar</a>
       <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
-        aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"></button>
+        aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-stream sidebarlogo" aria-hidden="true"></i>
+      </button>
       <div class="collapse navbar-collapse" id="collapsibleNavId">
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
           <li class="nav-item">
@@ -38,29 +41,51 @@
           <li class="nav-item">
             <a class="nav-link navAnchorItem" href="{% url 'landing' %}#KIDSparticularCategoriesSecId">KIDS</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link navAnchorItem"data-toggle="collapse" href="#searchItem" role="button" aria-expanded="false" aria-controls="searchItem">
+          <li class="nav-item d-none d-sm-block">
+            <a class="nav-link navAnchorItem" data-toggle="collapse" href="#searchItem" role="button"
+              aria-expanded="false" aria-controls="searchItem">
               <i class="fa fa-search cartlogo" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li class="nav-item d-sm-none">
+            <a class="nav-link navAnchorItem" data-toggle="collapse" href="#searchItem" role="button"
+              aria-expanded="false" aria-controls="searchItem">
+              Search <i class="fa fa-search cartlogo" aria-hidden="true"></i>
             </a>
           </li>
         </ul>
         <ul class="navbar-nav ml-auto">
-          {% if user.is_authenticated %}
-          <li class="nav-item">
-            <form method="post" action="{% url 'account_logout' %}">
-              {% csrf_token %}       
-                <button type="submit" class="btn btn-link navAnchorItem">Logout</a>
-            </form>
-          </li>
-          {% else %}
-          <li class="nav-item">
-            <a class="nav-link navAnchorItem" href="{% url 'account_login' %}">Login | Signup</a>
-          </li>
-          {% endif %}
-          <li class="nav-item">
+          <li class="nav-item d-sm-none">
             <a class="nav-link carLogoAnchor" href="/cart/">
+              <span>Cart</span><i class="fa fa-opencart cartlogo" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li class="nav-item d-none d-sm-block">
+            <a class="nav-link carLogoAnchor navAnchorItem" href="/cart/">
               <i class="fa fa-opencart cartlogo" aria-hidden="true"></i>
             </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-display="static" id="navbarDropdown" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-user cartlogo" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-sm-right" aria-labelledby="navbarDropdown">
+
+              {% if user.is_authenticated %}
+              <a class="dropdown-item" href="{% url 'myorder' %}">My Orders</a>
+              <a class="dropdown-item" href="track.html">Track Order</a>
+              <a class="dropdown-item" href="{% url 'return' %}">Return/Refund</a>
+              <div class="dropdown-divider"></div>
+              <form method="post" action="{% url 'account_logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-link dropdown-item">Logout</a>
+              </form>
+              {% else %}
+              <a class="dropdown-item" href="{% url 'account_login' %}">Login | Signup</a>
+              {% endif %}
+
+            </div>
           </li>
         </ul>
       </div>
@@ -72,9 +97,10 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 offset-lg-2 col-12">
-          <form action="{% url 'search' %}" method="GET" >
+          <form action="{% url 'search' %}" method="GET">
             <div class="input-group blogBar mt-3 mb-3">
-              <input type="search" class="form-control searchInput" name="search" placeholder="Search Products" required>
+              <input type="search" class="form-control searchInput" name="search" placeholder="Search Products"
+                required>
               <div class="input-group-append">
                 <input class="input-group-text subscribeText" type="submit" value="Search">
               </div>
@@ -85,7 +111,7 @@
     </div>
   </div>
   <!-- Search Ends -->
-    {% block mainCont %}{% endblock mainCont %}
+  {% block mainCont %}{% endblock mainCont %}
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous"></script>
@@ -96,7 +122,7 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/7a10e3388d.js" crossorigin="anonymous"></script>
-  
+
 </body>
 
 </html>
