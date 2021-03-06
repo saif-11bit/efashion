@@ -1,56 +1,60 @@
-{% extends 'base.html' %} {% block mainCont %} {% load static %}
+{% extends 'base.html' %}
+{% block title %}Cart - EfashionBazaar{% endblock title %}
+{% block mainCont %} {% load static %}
 <!-- Cart Section Product Begins  -->
 <section class="cartSec">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 col-12">
-          <p class="text-center categoriesMainTitle">
-            Your Cart : ₹ {{cart.get_total}}
-          </p>
-          {% if cart.items.all %}
-          <a class="btn text-center checkoutNowBtn" href="/checkout/">Checkout Now <i class="fas fa-shopping-cart"></i></a>
-          {% else %}
-          <a class="btn text-center checkoutNowBtn" href="/">Continue Shopping <i class="fas fa-shopping-cart"></i></a>
-          {% endif %}
-          <hr class="style5">
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-12">
+        <p class="text-center categoriesMainTitle">
+          Your Cart : ₹ {{cart.get_total}}
+        </p>
+        {% if cart.items.all %}
+        <a class="btn text-center checkoutNowBtn" href="/checkout/">Checkout Now <i
+            class="fas fa-shopping-cart"></i></a>
+        {% else %}
+        <a class="btn text-center checkoutNowBtn" href="/">Continue Shopping <i class="fas fa-shopping-cart"></i></a>
+        {% endif %}
+        <hr class="style5">
       </div>
-      <div class="row">
-        {% for i in cart.items.all %}
-        <div class="col-lg-6 col-md-10 col-12 m-auto">
-          <div class="card cartSecCard">
-            <div class="row">
-              <div class="col-lg-4 col-md-4 col-4">
-                <a href="{% url 'product-detail' i.item.id %}">
+    </div>
+    <div class="row">
+      {% for i in cart.items.all %}
+      <div class="col-lg-6 col-md-10 col-12 m-auto">
+        <div class="card cartSecCard">
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-4">
+              <a href="{% url 'product-detail' i.item.id %}">
                 <img src="{{i.item.p_image.url}}" class="img-fluid cartSecCardImage" alt="{{ i.item.p_name }}">
-                </a>
-              </div>
-              <div class="col-lg-8 col-md-8 col-8">
-                <a href="{% url 'product-detail' i.item.id %}">
+              </a>
+            </div>
+            <div class="col-lg-8 col-md-8 col-8">
+              <a href="{% url 'product-detail' i.item.id %}">
                 <p class="card-title cartSecCardTitle">
                   {{i.item.p_name}}
                 </p>
               </a>
-                <p class="cartSecCardPrice">
-                  ₹ {{i.item.p_price}}
-                </p>
-                <p class="cartSecCardSize">
-                  Size: <strong>{{i.size}}</strong>
-                </p>
-                <p class="cartSecCardSize">
-                  Qty: <strong> {{i.quantity}} </strong>
-                </p>
-                <p class="cartSecCardPara d-none d-sm-none d-md-block d-lg-block">
-                  {{ i.item.p_desc|slice:"0:72" }}... <a href="{% url 'product-detail' i.item.id %}">view more</a>
-                </p>
-                <a class="btn cartSecCardBtn" href="{% url 'remove-from-cart' i.item.id i.size %}">Remove Item <i class="fa fa-trash" aria-hidden="true"></i></a>
-              </div>
+              <p class="cartSecCardPrice">
+                ₹ {{i.item.p_price}}
+              </p>
+              <p class="cartSecCardSize">
+                Size: <strong>{{i.size}}</strong>
+              </p>
+              <p class="cartSecCardSize">
+                Qty: <strong> {{i.quantity}} </strong>
+              </p>
+              <p class="cartSecCardPara d-none d-sm-none d-md-block d-lg-block">
+                {{ i.item.p_desc|slice:"0:72" }}... <a href="{% url 'product-detail' i.item.id %}">view more</a>
+              </p>
+              <a class="btn cartSecCardBtn" href="{% url 'remove-from-cart' i.item.id i.size %}">Remove Item <i
+                  class="fa fa-trash" aria-hidden="true"></i></a>
             </div>
           </div>
         </div>
-        {% endfor %}
-      
+      </div>
+      {% endfor %}
+
     </div>
-  </section>
-  <!-- Cart Section Product Ends  -->
+</section>
+<!-- Cart Section Product Ends  -->
 {% endblock mainCont %}

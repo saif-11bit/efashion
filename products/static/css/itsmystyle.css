@@ -678,6 +678,44 @@ hr.style5 {
   background-color: var(--seconMainBgCol) !important;
 }
 /* Return CSS Ends */
+/* Account Sec Begins  */
+.accountsec {
+  width: 100%;
+  height: auto;
+  margin-top: 2rem;
+}
+.illustrator {
+  width: 100%;
+  height: 25rem;
+}
+
+.illustratorTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--seconMainBgCol);
+}
+
+.illustratorPara {
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.loginBtnIllus {
+  border: 2px solid var(--seconMainBgCol);
+  border-radius: 6rem;
+  margin: 0 0.4rem;
+  padding: 1rem 1.5rem;
+  outline: none;
+  background: var(--seconMainBgCol);
+  background: var(--seconMainBgCol);
+  color: #ffffff !important;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+}
+/* Account Sec Ends  */
 
 @media (max-width: 399px) {
   .nav-item {

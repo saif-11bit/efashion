@@ -1,31 +1,34 @@
 <!doctype html>
 <html lang="en">
 {% load static %}
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!-- Custon CSS Link  -->
-    <link rel="stylesheet" href="{% static 'css/itsmystyle.css' %}">
-    <!-- LOGO  -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+  <!-- Custon CSS Link  -->
+  <link rel="stylesheet" href="{% static 'css/itsmystyle.css' %}">
+  <!-- LOGO  -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
-    <title>eFashionBazar</title>
-  </head>
-  <body>
-    <!-- Navbar Begins  -->
-    <nav class="navbar navbar-expand-sm navbar-dark justify-content-center" id="navbarId">
-        <a class="navbar-brand" href="{% url 'landing' %}">eFashionBazar</a>
-    </nav>
-    <!-- Navbar Ends  -->
-    {% block mainCont %}{% endblock mainCont %}
-     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+  <title>{% block title %}{% endblock title %}</title>
+</head>
+
+<body>
+  <!-- Navbar Begins  -->
+  <nav class="navbar navbar-expand-sm navbar-dark justify-content-center" id="navbarId">
+    <a class="navbar-brand" href="{% url 'landing' %}">eFashionBazar</a>
+  </nav>
+  <!-- Navbar Ends  -->
+  {% block mainCont %}{% endblock mainCont %}
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
     crossorigin="anonymous"></script>
@@ -33,9 +36,10 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/7a10e3388d.js" crossorigin="anonymous"></script>
-    <script>
-      $('label').addClass('labelForInput');
-    </script>    
+  <script>
+    $('label').addClass('labelForInput');
+  </script>
   {% block js %}{% endblock js %}
-  </body>
+</body>
+
 </html>
