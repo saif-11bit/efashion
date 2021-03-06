@@ -173,7 +173,6 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-<<<<<<< HEAD
 PAYTM_COMPANY_NAME = "Company Name"   # For representation purposes
 PAYTM_INDUSTRY_TYPE_ID = "Retail"     # For staging environment
 PAYTM_CHANNEL_ID = "WEB"
@@ -183,5 +182,4 @@ PAYTM_CALLBACK_URL = "http://127.0.0.1:8000/response/" # Hardcode
 PAYTM_WEBSITE = "WEBSTAGING"
 PAYTM_PAYMENT_GATEWAY_URL = "https://securegw-stage.paytm.in/order/process"
 PAYTM_TRANSACTION_STATUS_URL = "https://securegw-stage.paytm.in/order/status"
-=======
->>>>>>> 048c0533a907db610df090f3fa9bae476fe08829
+

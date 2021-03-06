@@ -11,14 +11,11 @@ from .views import (
     cart_view,
     add_address,
     add_coupon,
-<<<<<<< HEAD
     payment,
     response,
     success,
-=======
     myorders,
     returnorder,
->>>>>>> 048c0533a907db610df090f3fa9bae476fe08829
 )
 
 
