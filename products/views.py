@@ -16,11 +16,8 @@ from .models import (
     Address,
     CouponCode,
     Review,
-<<<<<<< HEAD
     Payment,
-=======
     Refund,
->>>>>>> 048c0533a907db610df090f3fa9bae476fe08829
 )
 from .forms import CheckoutForm
 from . import Checksum
@@ -296,7 +293,6 @@ def add_address(request):
 
         return redirect('/checkout/')
 
-<<<<<<< HEAD
 
 def payment(request):
     order = Order.objects.get(user=request.user, ordered=False)
@@ -349,7 +345,7 @@ def success(request):
     order.ordered = True
     order.save()
     return redirect('/')
-=======
+
 @login_required
 def myorders(request):
     myorder = OrderItem.objects.filter(user=request.user,ordered=True)
@@ -366,4 +362,3 @@ def returnorder(request):
         'order': myorder,
     }
     return render(request, 'refund.html', context)
->>>>>>> 048c0533a907db610df090f3fa9bae476fe08829
