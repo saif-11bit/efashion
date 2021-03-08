@@ -293,7 +293,7 @@ def add_address(request):
 
         return redirect('/checkout/')
 
-
+@login_required
 def payment(request):
     order = Order.objects.get(user=request.user, ordered=False)
     if request.method == 'POST':
@@ -348,7 +348,7 @@ def success(request):
 
 @login_required
 def myorders(request):
-    myorder = OrderItem.objects.filter(user=request.user,ordered=True)
+    myorder = Order.objects.get(user=request.user,ordered=True)
     context = {
         'order': myorder,
     }
