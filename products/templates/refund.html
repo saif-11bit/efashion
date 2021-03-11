@@ -1,64 +1,79 @@
 {% extends 'base.html' %}
-{% block title %}Refund - EfashionBazaar{% endblock title %}
+<!--  -->
+{% block title %}Refund - EfashionBazaar {% endblock title %}
+<!--  -->
 {% block mainCont %} {% load static %}
 <section class="refundSec">
   <div class="container">
     <div class="row">
       <div class="col-lg-12 col-12">
-        <p class="text-center categoriesMainTitle">
-          Refund Order
-        </p>
-        <hr class="style5">
+        <p class="text-center categoriesMainTitle">Refund Order</p>
+        <hr class="style5" />
       </div>
     </div>
     <div class="row">
-      {% if order.items.all %}
-      {% for i in order.items.all %}
+      {% if order.items.all %} {% for i in order.items.all %}
       <div class="col-lg-6 col-md-10 col-12 m-auto">
         <div class="card cartSecCard">
           <div class="row">
             <div class="col-lg-4 col-md-4 col-4">
               <a href="{% url 'product-detail' i.item.id %}">
-                <img src="{{ i.item.p_image.url }}" class="img-fluid cartSecCardImage" alt="{{ i.item.p_name }}">
+                <img
+                  src="{{ i.item.p_image.url }}"
+                  class="img-fluid cartSecCardImage"
+                  alt="{{ i.item.p_name }}"
+                />
               </a>
             </div>
             <div class="col-lg-8 col-md-8 col-8">
               <a href="{% url 'product-detail' i.item.id %}">
-                <p class="card-title cartSecCardTitle">
-                  {{ i.item.p_name }}
-                </p>
+                <p class="card-title cartSecCardTitle">{{ i.item.p_name }}</p>
               </a>
-              <p class="cartSecCardPrice">
-                ₹{{ i.item.p_price }}
-              </p>
-              <p class="cartSecCardSize">
-                Size: <strong>S</strong>
-              </p>
+              <p class="cartSecCardPrice">₹{{ i.item.p_price }}</p>
+              <p class="cartSecCardSize">Size: <strong>S</strong></p>
               <p class="cartSecCardPara d-none d-sm-none d-md-block d-lg-block">
-                {{ i.item.p_desc|slice:"0:72" }}... <a href="{% url 'product-detail' i.item.id %}">view more</a>
+                {{ i.item.p_desc|slice:"0:72" }}...
+                <a href="{% url 'product-detail' i.item.id %}">view more</a>
               </p>
               {% if i.refund_requested %}
               <p class="cartSecCardmsgRefund">
-                {% if i.refund_granted %}
-                Refund Granted
-                {% endif %}
-                Refund Requested
+                {% if i.refund_granted %} Refund Granted {% endif %} Refund
+                Requested
               </p>
               {% else %}
-              <button class="btn cartSecCardBtn" data-toggle="modal" data-target="#exampleModal">
-                Return Order <i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+              <button
+                class="btn cartSecCardBtn"
+                data-toggle="modal"
+                data-target="#exampleModal"
+              >
+                Return Order
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+              </button>
               {% endif %}
             </div>
           </div>
         </div>
       </div>
       <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Return {{ i.item.p_name }}</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <h5 class="modal-title" id="exampleModalLabel">
+                Return {{ i.item.p_name }}
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -67,22 +82,43 @@
               <div class="modal-body">
                 <div class="form-group">
                   <label for="whyReturn">Reason to return?</label>
-                  <textarea class="form-control" name="reason" id="whyReturn" rows="3"></textarea>
-                  <small id="helpId" class="form-text text-muted">Provide satisfying answer.</small>
+                  <textarea
+                    class="form-control"
+                    name="reason"
+                    id="whyReturn"
+                    rows="3"
+                  ></textarea>
+                  <small id="helpId" class="form-text text-muted"
+                    >Provide satisfying answer.</small
+                  >
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No, I don't</button>
-                <button type="submit" class="btn btn-primary yesConfirmModalBtn">Yes, Confirm</button>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  No, I don't
+                </button>
+                <button
+                  type="submit"
+                  class="btn btn-primary yesConfirmModalBtn"
+                >
+                  Yes, Confirm
+                </button>
               </div>
             </form>
           </div>
         </div>
       </div>
-      {% endfor %}
-      {% else %}
+      {% endfor %} {% else %}
       <div class="col-lg-8 col-12">
-        <img src="{% static 'image/empty_cart.svg' %}" class="img-fluid undrawImage" alt="">
+        <img
+          src="{% static 'image/empty_cart.svg' %}"
+          class="img-fluid undrawImage"
+          alt=""
+        />
       </div>
       <div class="col-lg-4 col-12">
         <p class="noMyOrders">
