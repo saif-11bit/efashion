@@ -35,10 +35,18 @@
                 {{ i.item.p_desc|slice:"0:72" }}...
                 <a href="{% url 'product-detail' i.item.id %}">view more</a>
               </p>
-              {% if i.refund_requested %}
+              {% if order.refund_requested %}
               <p class="cartSecCardmsgRefund">
+<<<<<<< HEAD
                 {% if i.refund_granted %} Refund Granted {% endif %} Refund
                 Requested
+=======
+                {% if order.refund_granted %}
+                Refund Granted
+                {% else %}
+                Refund Requested
+                {% endif %}
+>>>>>>> bc3ca79c48cb2bebb3b45e41cce76e201f3a9400
               </p>
               {% else %}
               <button
@@ -50,6 +58,7 @@
                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
               </button>
               {% endif %}
+
             </div>
           </div>
         </div>
@@ -82,6 +91,7 @@
               <div class="modal-body">
                 <div class="form-group">
                   <label for="whyReturn">Reason to return?</label>
+<<<<<<< HEAD
                   <textarea
                     class="form-control"
                     name="reason"
@@ -91,6 +101,10 @@
                   <small id="helpId" class="form-text text-muted"
                     >Provide satisfying answer.</small
                   >
+=======
+                  <textarea class="form-control" name="reason" id="whyReturn" rows="3" required></textarea>
+                  <small id="helpId" class="form-text text-muted">Provide satisfying answer.</small>
+>>>>>>> bc3ca79c48cb2bebb3b45e41cce76e201f3a9400
                 </div>
               </div>
               <div class="modal-footer">

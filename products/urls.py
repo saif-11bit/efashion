@@ -16,6 +16,7 @@ from .views import (
     success,
     myorders,
     returnorder,
+    trackorder,
 )
 
 
@@ -37,6 +38,7 @@ urlpatterns = [
     path('checkout/', CheckoutView.as_view(), name="checkout"),
     path('myorders/', myorders, name="myorder"),
     path('return/', returnorder, name="return"),
+    path('track/', trackorder, name="track"),
     # Authentication System 
     # path('signup/', SignUpSystem, name="Signin"),
     # path('login/', LoginSystem, name="Login"),

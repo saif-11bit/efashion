@@ -103,7 +103,8 @@ class Order(models.Model):
     refund_requested = models.BooleanField(default=False)
     refund_requested_reason = models.CharField(max_length=200, null=True, blank=True)
     refund_granted = models.BooleanField(default=False)
-
+    track_order = models.CharField(max_length=80, null=True, blank=True)
+    
     def __str__(self):
         return self.user.username
 
@@ -113,7 +114,7 @@ class Order(models.Model):
             total += order_item.get_final_price()
         if self.coupon and total>1:
             total -= self.coupon.amount
-        return total
+        return total 
 
 class Address(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -141,16 +142,6 @@ class CouponCode(models.Model):
 
     def __str__(self):
         return self.code
-
-
-class Refund(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
-    reason = models.TextField()
-    accepted = models.BooleanField(default=False)
-    email = models.EmailField()
-
-    def __str__(self):
-        return f"{self.pk}"
 
 class metaTags(models.Model):
     keyword = models.TextField()
