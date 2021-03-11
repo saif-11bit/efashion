@@ -571,6 +571,13 @@ hr.style5 {
   color: #ffffff;
   background-color: var(--seconMainBgCol);
 }
+
+.cartSecCardmsgRefund {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 0rem;
+  color: var(--seconMainBgCol);
+}
 /* Cart CSS Ends  */
 /* Checkout CSS Begins  */
 .checkoutSec {

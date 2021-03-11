@@ -10,6 +10,7 @@ from .models import (
     Refund,
     metaTags,
     Review,
+    Crousal,
 )
 # Register your models here.
 
@@ -23,3 +24,4 @@ admin.site.register(CouponCode)
 admin.site.register(Refund)
 admin.site.register(metaTags)
 admin.site.register(Review)
+admin.site.register(Crousal)

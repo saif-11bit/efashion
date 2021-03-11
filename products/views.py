@@ -356,8 +356,12 @@ def myorders(request):
 
 @login_required
 def returnorder(request):
-    myorder = OrderItem.objects.filter(user=request.user,ordered=True)
-    #Ye Banana hai
+    myorder = Order.objects.get(user=request.user,ordered=True)
+    if request.method=="POST":
+        reason_refund = request.POST.get('reason')
+        myorder.refund_requested_reason = reason_refund
+        myorder.refund_requested = True
+        myorder.save()
     context = {
         'order': myorder,
     }

@@ -101,6 +101,7 @@ class Order(models.Model):
     being_delivered = models.BooleanField(default=False)
     recieved = models.BooleanField(default=False)
     refund_requested = models.BooleanField(default=False)
+    refund_requested_reason = models.CharField(max_length=200, null=True, blank=True)
     refund_granted = models.BooleanField(default=False)
 
     def __str__(self):

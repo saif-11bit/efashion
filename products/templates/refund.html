@@ -12,8 +12,8 @@
       </div>
     </div>
     <div class="row">
-      {% if order %}
-      {% for i in order %}
+      {% if order.items.all %}
+      {% for i in order.items.all %}
       <div class="col-lg-6 col-md-10 col-12 m-auto">
         <div class="card cartSecCard">
           <div class="row">
@@ -37,8 +37,17 @@
               <p class="cartSecCardPara d-none d-sm-none d-md-block d-lg-block">
                 {{ i.item.p_desc|slice:"0:72" }}... <a href="{% url 'product-detail' i.item.id %}">view more</a>
               </p>
-              <button class="btn cartSecCardBtn" data-toggle="modal" data-target="#exampleModal">Return Order <i
-                  class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+              {% if i.refund_requested %}
+              <p class="cartSecCardmsgRefund">
+                {% if i.refund_granted %}
+                Refund Granted
+                {% endif %}
+                Refund Requested
+              </p>
+              {% else %}
+              <button class="btn cartSecCardBtn" data-toggle="modal" data-target="#exampleModal">
+                Return Order <i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+              {% endif %}
             </div>
           </div>
         </div>
