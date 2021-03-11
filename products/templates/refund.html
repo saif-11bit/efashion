@@ -37,17 +37,19 @@
               <p class="cartSecCardPara d-none d-sm-none d-md-block d-lg-block">
                 {{ i.item.p_desc|slice:"0:72" }}... <a href="{% url 'product-detail' i.item.id %}">view more</a>
               </p>
-              {% if i.refund_requested %}
+              {% if order.refund_requested %}
               <p class="cartSecCardmsgRefund">
-                {% if i.refund_granted %}
+                {% if order.refund_granted %}
                 Refund Granted
-                {% endif %}
+                {% else %}
                 Refund Requested
+                {% endif %}
               </p>
               {% else %}
               <button class="btn cartSecCardBtn" data-toggle="modal" data-target="#exampleModal">
                 Return Order <i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
               {% endif %}
+
             </div>
           </div>
         </div>
@@ -67,7 +69,7 @@
               <div class="modal-body">
                 <div class="form-group">
                   <label for="whyReturn">Reason to return?</label>
-                  <textarea class="form-control" name="reason" id="whyReturn" rows="3"></textarea>
+                  <textarea class="form-control" name="reason" id="whyReturn" rows="3" required></textarea>
                   <small id="helpId" class="form-text text-muted">Provide satisfying answer.</small>
                 </div>
               </div>
