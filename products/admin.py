@@ -7,7 +7,6 @@ from .models import (
     Order,
     Address,
     CouponCode,
-    Refund,
     metaTags,
     Review,
     Crousal,
@@ -72,7 +71,6 @@ admin.site.register(OrderItem)
 admin.site.register(Order, OrderAdmin)
 admin.site.register(Address, AddressAdmin)
 admin.site.register(CouponCode)
-admin.site.register(Refund)
 admin.site.register(metaTags)
 admin.site.register(Review)
 admin.site.register(Crousal)

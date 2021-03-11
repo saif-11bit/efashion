@@ -17,7 +17,6 @@ from .models import (
     CouponCode,
     Review,
     Payment,
-    Refund,
 )
 from .forms import CheckoutForm
 from . import Checksum
@@ -366,3 +365,12 @@ def returnorder(request):
         'order': myorder,
     }
     return render(request, 'refund.html', context)
+
+@login_required
+def trackorder(request):
+    myorder = Order.objects.get(user=request.user,ordered=True)
+    
+    context = {
+        'order': myorder,
+    }
+    return render(request, 'track.html', context)

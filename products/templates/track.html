@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block title %}Track Orders - EfashionBazaar{% endblock title %}
+{% block mainCont %}
+{% load static %}
+<section class="refundSec">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-12">
+                <p class="text-center categoriesMainTitle">
+                    Track Order
+                </p>
+                <hr class="style5">
+            </div>
+        </div>
+        <div class="row">
+            {% if order.items.all %}
+            {% for i in order.items.all %}
+            <div class="col-lg-6 col-md-12 col-12 m-auto">
+                <div class="card cartSecCard">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-4">
+                            <a href="{% url 'product-detail' i.item.id %}">
+                                <img src="{{ i.item.p_image.url }}" class="img-fluid cartSecCardImage"
+                                    alt="{{ i.item.p_name }}">
+                            </a>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-8">
+                            <a href="{% url 'product-detail' i.item.id %}">
+                                <p class="card-title cartSecCardTitle">
+                                    {{ i.item.p_name }}
+                                </p>
+                            </a>
+                            <ul class="list-group list-group-flush mt-3">
+                                <li class="list-group-item">Departed from Main Facility</li>
+
+                                <li class="list-group-item">
+                                    {{ order.track_order }}
+                                </li>
+
+
+                                <li class="list-group-item">
+                                    {% if order.being_delivered %}
+                                    {% if order.recieved %}
+                                    <p class="text-success">
+                                        Order Recieved in {{ order.address.street_address }}
+                                        {{ order.address.city }} {{ order.address.state }}
+                                        {% else %}
+                                        Order Delivered at {{ order.address.street_address }}
+                                        {{ order.address.city }} {{ order.address.state }}
+                                        {% endif %}
+                                    </p>
+                                    {% else %}
+                                    Will Reach {{ order.address.street_address }}
+                                    {{ order.address.city }} {{ order.address.state }}
+                                    {% endif %}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="col-lg-8 col-12">
+                <img src="{% static 'image/empty_cart.svg' %}" class="img-fluid undrawImage" alt="">
+            </div>
+            <div class="col-lg-4 col-12">
+                <p class="noMyOrders">
+                    Oops! No Item.
+                    <a class="btn shopNowBtn" href="{% url 'landing' %}">Shop Now</a>
+                </p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock mainCont %}

@@ -74,7 +74,7 @@
 
               {% if user.is_authenticated %}
               <a class="dropdown-item" href="{% url 'myorder' %}">My Orders</a>
-              <a class="dropdown-item" href="track.html">Track Order</a>
+              <a class="dropdown-item" href="{% url 'track' %}">Track Order</a>
               <a class="dropdown-item" href="{% url 'return' %}">Return/Refund</a>
               <div class="dropdown-divider"></div>
               <form method="post" action="{% url 'account_logout' %}">
