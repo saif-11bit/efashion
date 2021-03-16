@@ -88,7 +88,6 @@ def product_detail(request, id):
     related_item = Item.objects.exclude(id=id).filter(category=item.category)[:4]
     tags = metaTags.objects.all()
 
-
     context = {
         'item' :item,
         'tag': tags,
