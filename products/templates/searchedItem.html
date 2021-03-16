@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Search Results - EfashionBazaar{% endblock title %}
 {% block mainCont %}
+{% load static %}
 <!-- Searched Item Begins  -->
 <section class="searchedItem">
     <div class="container">
@@ -13,6 +14,7 @@
             </div>
         </div>
         <div class="row">
+            {% if prod %}
             {% for i in prod %}
             <div class="col-lg-3 col-md-6 col-6">
                 <a href="{% url 'product-detail' i.id %}">
@@ -26,6 +28,20 @@
                 </a>
             </div>
             {% endfor %}
+            {% else %}
+            <div class="col-lg-6 col-12">
+                <img src="{% static 'image/mobile_login.svg' %}" class="illustrator"
+                    alt="Undraw illustrations EfashionBazaar">
+            </div>
+            <div class="col-lg-6 col-12">
+                <h1 class="illustratorTitle">Nothing Matched</h1>
+                <p class="illustratorPara">Try searching with different keywords</p>
+                <a data-toggle="collapse" href="#searchItem" role="button" aria-expanded="false"
+                    aria-controls="searchItem" class="btn loginBtnIllus">Search Again</a>
+
+            </div>
+
+            {% endif %}
         </div>
     </div>
 </section>

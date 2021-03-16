@@ -136,12 +136,15 @@
     </div>
     <div class="row">
       <div class="col-lg-8 offset-lg-2 col-12">
-        <div class="input-group blogBar">
-          <input type="search" class="form-control searchInput" placeholder="Your Email">
-          <div class="input-group-append">
-            <span class="input-group-text subscribeText">Subscribe</span>
+        <form method="POST">
+          {% csrf_token %}
+          <div class="input-group blogBar">
+            <input type="email" class="form-control searchInput" name="email" placeholder="Your Email" required>
+            <div class="input-group-append">
+              <input type="submit" class="input-group-text subscribeText" value="Subscribe">
+            </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>

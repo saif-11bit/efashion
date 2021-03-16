@@ -166,3 +166,8 @@ class Payment(models.Model):
 
     def __str__(self):
         return f"{self.user}"
+
+class EmailNewsletter(models.Model):
+    email = models.CharField(max_length=60)
+    def __str__(self):
+        return self.email

@@ -10,6 +10,7 @@ from .models import (
     metaTags,
     Review,
     Crousal,
+	EmailNewsletter,
 )
 # Register your models here.
 
@@ -74,3 +75,4 @@ admin.site.register(CouponCode)
 admin.site.register(metaTags)
 admin.site.register(Review)
 admin.site.register(Crousal)
+admin.site.register(EmailNewsletter)
