@@ -23,7 +23,10 @@
               <a href="{% url 'product-detail' i.item.id %}">
                 <p class="card-title cartSecCardTitle">{{ i.item.p_name }}</p>
               </a>
-              <p class="cartSecCardPrice">₹{{ i.item.p_price }}</p>
+              <p class="cartSecCardPrice">{% if i.item.p_dis_price %}
+                <del class="priceoff"> ₹{{i.item.p_price}} </del>
+                ₹{{i.item.p_dis_price}} {% else %} ₹{{i.item.p_price}} {% endif %}
+              </p>
               <p class="cartSecCardSize">Size: <strong>S</strong></p>
               <p class="cartSecCardPara d-none d-sm-none d-md-block d-lg-block">
                 {{ i.item.p_desc|slice:"0:72" }}...

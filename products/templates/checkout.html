@@ -11,14 +11,8 @@
     </div>
     <div class="row">
       <div class="col-lg-8 col-md-8 col-sm-12 col-12">
-        <a
-          class="btn addressHref"
-          data-toggle="collapse"
-          href="#addaAddress"
-          role="button"
-          aria-expanded="false"
-          aria-controls="addaAddress"
-        >
+        <a class="btn addressHref" data-toggle="collapse" href="#addaAddress" role="button" aria-expanded="false"
+          aria-controls="addaAddress">
           Add a address
           <i class="fa fa-edit addressEditlogo" aria-hidden="true"></i>
         </a>
@@ -28,62 +22,32 @@
             <div class="form-row mt-3">
               <div class="form-group col-md-6">
                 <label class="labelForMail" for="inputName">Name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="inputName"
-                  name="name"
-                />
+                <input type="text" class="form-control" id="inputName" name="name" />
               </div>
               <div class="form-group col-md-6">
                 <label class="labelForMail" for="inputPhone">Phone No.</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="inputPhone"
-                  name="phone_n"
-                />
+                <input type="text" class="form-control" id="inputPhone" name="phone_n" />
               </div>
             </div>
 
             <div class="form-group">
               <label class="labelForMail" for="inputAddress">Address</label>
-              <input
-                type="text"
-                class="form-control"
-                id="inputAddress"
-                placeholder="1234 Main St"
-                name="street_address"
-              />
+              <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St"
+                name="street_address" />
             </div>
 
             <div class="form-row">
               <div class="form-group col-md-4">
                 <label class="labelForMail" for="inputZip">Pin Code</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="inputZip"
-                  name="pin_code"
-                />
+                <input type="text" class="form-control" id="inputZip" name="pin_code" />
               </div>
               <div class="form-group col-md-4">
                 <label class="labelForMail" for="inputCity">City</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="inputCity"
-                  name="city"
-                />
+                <input type="text" class="form-control" id="inputCity" name="city" />
               </div>
               <div class="form-group col-md-4">
                 <label class="labelForMail" for="inputState">State</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="inputState"
-                  name="state"
-                />
+                <input type="text" class="form-control" id="inputState" name="state" />
                 <!-- <select id="inputState" class="form-control">
                     <option selected>Choose...</option>
                     <option>...</option>
@@ -96,20 +60,9 @@
         <p class="selectAddressRadioTitle">Select Address</p>
         {% if address %}
         <div class="radio-toolbar">
-          <form
-            action="{% url 'payment' %}"
-            method="POST"
-            name="custAdDet"
-            id="custAdDet"
-          >
+          <form action="{% url 'payment' %}" method="POST" name="custAdDet" id="custAdDet">
             {% csrf_token %} {% for i in address %}
-            <input
-              type="radio"
-              id="{{i.id}}"
-              name="radioAdressSel"
-              value="{{i.id}}"
-              required
-            />
+            <input type="radio" id="{{i.id}}" name="radioAdressSel" value="{{i.id}}" required />
             <label for="{{i.id}}">
               {{i.name}}
               <br />
@@ -120,11 +73,7 @@
               {{i.city}}-{{i.state}}-{{i.pin_code}}
             </label>
             {% endfor %}
-            <input
-              type="submit"
-              class="btn proceedBtnCheckout"
-              value="Proceed To Pay"
-            />
+            <input type="submit" class="btn proceedBtnCheckout" value="Proceed To Pay" />
           </form>
         </div>
         {% endif %}
@@ -133,17 +82,13 @@
         <!-- Heading -->
         <h4 class="d-flex justify-content-between align-items-center mb-3">
           <span class="yourCartTitleCheckout">Your cart</span>
-          <span class="badge badge-secondary badgetotalCart badge-pill"
-            >{{order.items.count}}</span
-          >
+          <span class="badge badge-secondary badgetotalCart badge-pill">{{order.items.count}}</span>
         </h4>
 
         <!-- Cart -->
         <ul class="list-group mb-3 z-depth-1">
           {% for order_item in order.items.all %}
-          <li
-            class="list-group-item d-flex justify-content-between lh-condensed yourcartcheckoutList"
-          >
+          <li class="list-group-item d-flex justify-content-between lh-condensed yourcartcheckoutList">
             <div>
               <h6 class="my-0">
                 {{order_item.item.p_name}}
@@ -151,21 +96,19 @@
               </h6>
               <!-- <small class="text-muted">Brief description</small> -->
             </div>
-            {% if order_item.item.discount_price %}
+            {% if order_item.item.p_dis_price %}
             <span class="text-muted">
-              {{order_item.get_total_discount_item_price}}
+              <del>₹{{order_item.get_total_item_price}}</del>
+              ₹{{order_item.get_total_discount_item_price}}
             </span>
-
             {% else %}
-            <span class="text-muted">
-              {{order_item.get_total_item_price}}
-            </span>
+            <span class="text-muted">₹{{order_item.get_total_item_price}} </span>
             {% endif %}
+
+
           </li>
           {% endfor %} {% if order.coupon %}
-          <li
-            class="list-group-item d-flex justify-content-between yourcartcheckoutList"
-          >
+          <li class="list-group-item d-flex justify-content-between yourcartcheckoutList">
             <div class="text-success">
               <h6 class="my-0">Promo code</h6>
               <small>{{order.coupon.code}}</small>
@@ -173,9 +116,7 @@
             <span class="text-success">-${{order.coupon.amount}}</span>
           </li>
           {% endif %}
-          <li
-            class="list-group-item d-flex justify-content-between yourcartcheckoutList"
-          >
+          <li class="list-group-item d-flex justify-content-between yourcartcheckoutList">
             <span class="">Total (Rs)</span>
             <strong>{{order.get_total}}</strong>
           </li>
@@ -183,26 +124,13 @@
         <!-- Cart -->
 
         <!-- Promo code -->
-        <form
-          class="card p-2 Promoform"
-          action="{% url 'add-coupon' %}"
-          method="POST"
-        >
+        <form class="card p-2 Promoform" action="{% url 'add-coupon' %}" method="POST">
           {% csrf_token %}
           <div class="input-group">
-            <input
-              type="text"
-              class="form-control Promoforminput"
-              placeholder="Promo code"
-              aria-label="Recipient's username"
-              aria-describedby="basic-addon2"
-              name="coupon"
-            />
+            <input type="text" class="form-control Promoforminput" placeholder="Promo code"
+              aria-label="Recipient's username" aria-describedby="basic-addon2" name="coupon" />
             <div class="input-group-append">
-              <button
-                class="btn btn-secondary redeemNowBtn btn-md waves-effect m-0"
-                type="submit"
-              >
+              <button class="btn btn-secondary redeemNowBtn btn-md waves-effect m-0" type="submit">
                 Redeem
               </button>
             </div>

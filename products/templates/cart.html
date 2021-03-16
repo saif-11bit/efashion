@@ -35,7 +35,9 @@
                 </p>
               </a>
               <p class="cartSecCardPrice">
-                ₹ {{i.item.p_price}}
+                {% if i.item.p_dis_price %}
+                <del class="priceoff"> ₹{{i.item.p_price}} </del>
+                ₹{{i.item.p_dis_price}} {% else %} ₹{{i.item.p_price}} {% endif %}
               </p>
               <p class="cartSecCardSize">
                 Size: <strong>{{i.size}}</strong>

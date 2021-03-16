@@ -1,8 +1,5 @@
-{% extends 'base.html' %} {% block title %}{{item.p_name}} - EfashionBazaar
-<!--  -->
-{% endblock title %}
-<!--  -->
-{% block mainCont %} {% load static %}
+{% extends 'base.html' %} {% block title %} {{item.p_name}} - EfashionBazaar
+{%endblock title %} {% block mainCont %} {% load static %}
 <!-- Product Begins  -->
 <section class="productDesSec">
   <div class="container">
@@ -62,7 +59,11 @@
       <div class="col-lg-8 col-md-8 col-sm-12 col-12">
         <div class="container">
           <p class="productDesSecTitle">{{item.p_name}}</p>
-          <p class="productDesSecPrice">₹{{item.p_price}}</p>
+          <p class="productDesSecPrice">
+            {% if item.p_dis_price %}
+            <del class="priceoff"> ₹{{item.p_price}} </del>
+            ₹{{item.p_dis_price}} {% else %} ₹{{item.p_price}} {% endif %}
+          </p>
           <p class="productDesSecDes">{{item.p_desc}}</p>
 
           <form action="{% url 'add-to-cart' item.id %}" method="POST">
