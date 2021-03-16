@@ -62,6 +62,13 @@
           </li>
           <li class="nav-item d-none d-sm-block">
             <a class="nav-link carLogoAnchor navAnchorItem" href="/cart/">
+           {% if cart.items.all %}
+            <span class="badge badge-warning">    
+              {% for i in cart.items.all %}
+                  {{ i|length }}
+              {% endfor %}
+            </span>
+            {% endif %}
               <i class="fa fa-opencart cartlogo" aria-hidden="true"></i>
             </a>
           </li>
@@ -111,6 +118,7 @@
     </div>
   </div>
   <!-- Search Ends -->
+  {% include 'messages.html' %}
   {% block mainCont %}{% endblock mainCont %}
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
