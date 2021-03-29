@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+
 # Create your models here.
 '''
 category
@@ -64,7 +65,7 @@ class OrderItem(models.Model):
         ('XL', 'XL'),
         ('2XL', '2XL'),
     ]
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="orderitems")
     ordered = models.BooleanField(default=False)
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
@@ -72,6 +73,10 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f"{self.quantity} of {self.item.p_name}"
+
+    def no_item_in_cart(self):
+        self.no_ord_cart = OrderItem.objects.filter(user=self.request.user,ordered=False)
+        return self.no_ord_cart
 
     def get_total_item_price(self):
         return self.quantity * self.item.p_price
@@ -90,7 +95,7 @@ class OrderItem(models.Model):
 
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    ref_code = models.CharField(max_length=20)
+    ref_code = models.CharField(max_length=20,null=True,blank=True)
     items = models.ManyToManyField(OrderItem)
     start_date = models.DateTimeField(auto_now_add=True)
     ordered_date = models.DateTimeField()

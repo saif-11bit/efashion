@@ -28,7 +28,10 @@
                 <p class="card-title cartSecCardTitle">{{ i.item.p_name }}</p>
               </a>
               <p class="cartSecCardPrice">₹{{ i.item.p_price }}</p>
-              <p class="cartSecCardSize">Size: <strong>S</strong></p>
+              <p class="cartSecCardSize">Size: <strong>{{i.size}}</strong></p>
+              <p class="cartSecCardSize">
+                Qty: <strong> {{i.quantity}} </strong>
+              </p>
               <p class="cartSecCardPara d-none d-sm-none d-md-block d-lg-block">
                 {{ i.item.p_desc|slice:"0:72" }}...
                 <a href="{% url 'product-detail' i.item.id %}">view more</a>
