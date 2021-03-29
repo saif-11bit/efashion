@@ -17,6 +17,7 @@ from .models import (
     CouponCode,
     Review,
     Payment,
+    EmailNewsletter,
 )
 from .forms import CheckoutForm
 from . import Checksum
@@ -28,7 +29,6 @@ import requests
 # from django.db.models import F
 # Create your views here.
 
-
 # Landing page view
 def landing(request):
     crousal = Crousal.objects.all()
@@ -36,6 +36,13 @@ def landing(request):
     category = Category.objects.all()
     tags = metaTags.objects.all()
     reviews = Review.objects.all()
+    emailnews = EmailNewsletter.objects.all()
+    if request.method=="POST":
+        emailn = request.POST.get('email')
+        emailnews = EmailNewsletter()
+        emailnews.email = emailn
+        emailnews.save()
+        
     context = {
         'available_for':Available_For.objects.all(),
         'crousal':crousal,

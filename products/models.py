@@ -44,7 +44,7 @@ class Item(models.Model):
     second_img = models.ImageField(upload_to='Second Img', null=True, blank=True)
     third_img = models.ImageField(upload_to='Third Img', null=True, blank=True)
     p_price = models.IntegerField()
-    p_dis_price = models.IntegerField()
+    p_dis_price = models.IntegerField(null=True, blank=True)
     p_desc = models.TextField()
     small_size = models.BooleanField(null=True)
     medium_size = models.BooleanField(null=True)
@@ -171,3 +171,8 @@ class Payment(models.Model):
 
     def __str__(self):
         return f"{self.user}"
+
+class EmailNewsletter(models.Model):
+    email = models.CharField(max_length=60)
+    def __str__(self):
+        return self.email

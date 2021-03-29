@@ -33,7 +33,11 @@
         <a href="{% url 'product-detail' i.id %}">
           <img src="{{i.p_image.url}}" class="img-fluid productSecCardImage" alt="" />
           <p class="text-center productSecCardTitle">{{i.p_name}}</p>
-          <p class="text-center productSecCardPrice">₹{{i.p_price}}</p>
+          <p class="text-center productSecCardPrice">
+            {% if i.p_dis_price %}
+            <del class="text-muted"> ₹{{i.p_price}} </del>
+            ₹{{i.p_dis_price}} {% else %} ₹{{i.p_price}} {% endif %}
+          </p>
         </a>
       </div>
       {% endfor %}

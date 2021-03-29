@@ -440,8 +440,14 @@ hr.style5 {
 .productDesSecPrice {
   font-size: 2rem;
   font-weight: 600;
+  color: var(--seconMainBgCol);
 }
 
+.priceoff{
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #343633;
+}
 .productDesSecSize {
   font-size: 1.2rem;
   font-weight: 500;
