@@ -62,11 +62,12 @@
           </li>
           <li class="nav-item d-none d-sm-block">
             <a class="nav-link carLogoAnchor navAnchorItem" href="/cart/">
-            <span class="badge badge-warning">    
               {% if request.user.orderitems.all %}
-                  {{ request.user.orderitems.all.count }}
-              {% endif %}
+            <span class="badge badge-warning">    
+                  {{ request.user.orderitems.count }}
             </span>
+              {% endif %}
+
               <i class="fa fa-opencart cartlogo" aria-hidden="true"></i>
             </a>
           </li>
@@ -78,6 +79,7 @@
             <div class="dropdown-menu dropdown-menu-sm-right" aria-labelledby="navbarDropdown">
 
               {% if user.is_authenticated %}
+              <a class="dropdown-item" href="{% url 'myorder' %}">Hi {{ user|capfirst }}</a>
               <a class="dropdown-item" href="{% url 'myorder' %}">My Orders</a>
               <a class="dropdown-item" href="{% url 'track' %}">Track Order</a>
               <a class="dropdown-item" href="{% url 'return' %}">Return/Refund</a>

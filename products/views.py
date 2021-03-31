@@ -167,8 +167,9 @@ def remove_from_cart(request, id, size):
                 size=size,
             )[0]
 
-            order_item.quantity = 1
-            order_item.save()
+            # order_item.quantity = 1
+            order_item.delete()
+            # order_item.save()
             
             order.items.remove(order_item)
             messages.info(request, "This item was removed from your cart.")
@@ -353,9 +354,9 @@ def success(request):
 
 @login_required
 def myorders(request):
-    myorder = Order.objects.get(user=request.user,ordered=True)
+    myorder = Order.objects.filter(user=request.user,ordered=True)
     context = {
-        'order': myorder,
+        'order': myorder.all(),
     }
     return render(request, 'myorders.html', context)
 

@@ -1,6 +1,5 @@
-{% extends 'base.html' %} {% block title %}My Orders - EfashionBazaar
-<!--  -->
-{% endblock title %} {% block mainCont %} {% load static %}
+{% extends 'base.html' %} {% block title %} My Orders - EfashionBazaar
+{%endblock title %} {% block mainCont %} {% load static %}
 <section class="myOrdersSec">
   <div class="container">
     <div class="row">
@@ -10,33 +9,39 @@
       </div>
     </div>
     <div class="row">
-      {% if order.items.all %} {% for i in order.items.all %}
+      {% if order %}{% for i in order %}
+      <!--  -->
+      {% for j in i.items.all %}
       <div class="col-lg-6 col-md-10 col-12 m-auto">
         <div class="card cartSecCard">
           <div class="row">
             <div class="col-lg-4 col-md-4 col-4">
-              <a href="{% url 'product-detail' i.item.id %}">
+              <a href="{% url 'product-detail' j.item.id %}">
                 <img
-                  src="{{ i.item.p_image.url }}"
+                  src="{{ j.item.p_image.url }}"
                   class="img-fluid cartSecCardImage"
-                  alt="{{ i.item.p_name }}"
+                  alt="{{ j.item.p_name }}"
                 />
               </a>
             </div>
             <div class="col-lg-8 col-md-8 col-8">
-              <a href="{% url 'product-detail' i.item.id %}">
-                <p class="card-title cartSecCardTitle">{{ i.item.p_name }}</p>
+              <a href="{% url 'product-detail' j.item.id %}">
+                <p class="card-title cartSecCardTitle">{{ j.item.p_name }}</p>
               </a>
               <p class="cartSecCardPrice">
-                {% if i.item.p_dis_price %}
-                <del class="priceoff"> ₹{{i.item.p_price}} </del>
-                ₹{{i.item.p_dis_price}} {% else %} ₹{{i.item.p_price}} {% endif
-                %}
+                {% if j.item.p_dis_price %}
+                <del class="priceoff"> ₹{{j.item.p_price}} </del>
+                ₹{{j.item.p_dis_price}} {% else %} ₹{{j.item.p_price}}
+                <!--  -->
+                {% endif %}
               </p>
-              <p class="cartSecCardSize">Size: <strong>S</strong></p>
+              <p class="cartSecCardSize">Size: <strong>{{j.size}}</strong></p>
+              <p class="cartSecCardSize">
+                Qty: <strong> {{j.quantity}} </strong>
+              </p>
               <p class="cartSecCardPara d-none d-sm-none d-md-block d-lg-block">
-                {{ i.item.p_desc|slice:"0:72" }}...
-                <a href="{% url 'product-detail' i.item.id %}">view more</a>
+                {{ j.item.p_desc|slice:"0:72" }}...
+                <a href="{% url 'product-detail' j.item.id %}">view more</a>
               </p>
               <a href="{% url 'track' %}" class="btn cartSecCardBtn">
                 Track Order
@@ -46,6 +51,8 @@
           </div>
         </div>
       </div>
+      {% endfor %}
+      <!--  -->
       {% endfor %} {% else %}
       <div class="col-lg-8 col-12">
         <img
