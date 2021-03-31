@@ -16,11 +16,7 @@
           <div class="row">
             <div class="col-lg-4 col-md-4 col-4">
               <a href="{% url 'product-detail' i.item.id %}">
-                <img
-                  src="{{ i.item.p_image.url }}"
-                  class="img-fluid cartSecCardImage"
-                  alt="{{ i.item.p_name }}"
-                />
+                <img src="{{ i.item.p_image.url }}" class="img-fluid cartSecCardImage" alt="{{ i.item.p_name }}" />
               </a>
             </div>
             <div class="col-lg-8 col-md-8 col-8">
@@ -30,8 +26,7 @@
               <p class="cartSecCardPrice">
                 {% if i.item.p_dis_price %}
                 <del class="priceoff"> ₹{{i.item.p_price}} </del>
-                ₹{{i.item.p_dis_price}} {% else %} ₹{{i.item.p_price}} {% endif
-                %}
+                ₹{{i.item.p_dis_price}} {% else %} ₹{{i.item.p_price}} {% endif %}
               </p>
               <p class="cartSecCardSize">Size: <strong>S</strong></p>
               <p class="cartSecCardPara d-none d-sm-none d-md-block d-lg-block">
@@ -48,11 +43,7 @@
       </div>
       {% endfor %} {% else %}
       <div class="col-lg-8 col-12">
-        <img
-          src="{% static 'image/empty_cart.svg' %}"
-          class="img-fluid undrawImage"
-          alt=""
-        />
+        <img src="{% static 'image/empty_cart.svg' %}" class="img-fluid undrawImage" alt="" />
       </div>
       <div class="col-lg-4 col-12">
         <p class="noMyOrders">

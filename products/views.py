@@ -353,7 +353,7 @@ def success(request):
 
 @login_required
 def myorders(request):
-    myorder = Order.objects.get(user=request.user,ordered=True)
+    myorder = Order.objects.filter(user=request.user,ordered=True)
     context = {
         'order': myorder,
     }
@@ -361,7 +361,7 @@ def myorders(request):
 
 @login_required
 def returnorder(request):
-    myorder = Order.objects.get(user=request.user,ordered=True)
+    myorder = Order.objects.filter(user=request.user,ordered=True)
     if request.method=="POST":
         reason_refund = request.POST.get('reason')
         myorder.refund_requested_reason = reason_refund
@@ -374,7 +374,7 @@ def returnorder(request):
 
 @login_required
 def trackorder(request):
-    myorder = Order.objects.get(user=request.user,ordered=True)
+    myorder = Order.objects.filter(user=request.user,ordered=True)
     
     context = {
         'order': myorder,
