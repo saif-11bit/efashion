@@ -443,7 +443,7 @@ hr.style5 {
   color: var(--seconMainBgCol);
 }
 
-.priceoff{
+.priceoff {
   font-size: 1.6rem;
   font-weight: 400;
   color: #343633;
@@ -730,6 +730,207 @@ hr.style5 {
 }
 /* Account Sec Ends  */
 
+/* Contact Us CSS Begins  */
+.contactUs {
+  background: #ffffff;
+  padding-bottom: 40px;
+  padding-top: 80px;
+}
+
+.contactUsMain {
+  padding-top: 60px;
+  background: #f8f9fa;
+  padding-bottom: 40px;
+}
+
+.section-title {
+  margin-bottom: 35px;
+  text-align: center;
+}
+
+.section-title span {
+  font-size: 20px;
+  color: var(--mainCol);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.section-title h2 {
+  /* color: #ffffff; */
+  font-size: 36px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+.section-title.contact-title {
+  text-align: left;
+  margin-bottom: 35px;
+}
+
+.contact-widget .contactUsIcons {
+  overflow: hidden;
+  margin-bottom: 35px;
+}
+
+.contact-widget .contactUsIcons i {
+  font-size: 30px;
+  color: #ffffff;
+  display: inline-block;
+  height: 65px;
+  width: 65px;
+  background: var(--seconMainBgCol);
+  border-radius: 50%;
+  line-height: 65px;
+  text-align: center;
+  float: left;
+  margin-right: 20px;
+}
+
+.contact-widget .contactUsIcons p {
+  overflow: hidden;
+  color: #000000;
+  margin-bottom: 0;
+  padding-top: 10px;
+}
+
+.contact-widget .contactUsIcons ul {
+  overflow: hidden;
+  padding-top: 20px;
+}
+
+.contact-widget .contactUsIcons ul li {
+  list-style: none;
+  font-size: 14px;
+  color: #000000;
+  margin-right: 25px;
+  display: inline-block;
+  position: relative;
+}
+
+.contact-widget .contactUsIcons ul li:after {
+  position: absolute;
+  right: -18px;
+  top: 0;
+  content: "|";
+  color: #545454;
+}
+
+.contact-widget .contactUsIcons ul li:last-child {
+  margin-right: 0;
+}
+
+.contact-widget .contactUsIcons ul li:last-child:after {
+  display: none;
+}
+
+.contact-widget .contactUsIcons.email p {
+  padding-top: 20px;
+}
+
+.leave-comment h5 {
+  font-size: 24px;
+  color: var(--mainCol);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+
+.leave-comment form input {
+  font-size: 13px;
+  color: #000000;
+  width: 100%;
+  height: 46px;
+  border: 1px solid #363636;
+  padding-left: 20px;
+  padding-right: 5px;
+  background: transparent;
+  margin-bottom: 20px;
+}
+
+.leave-comment form input::-webkit-input-placeholder {
+  color: #000000;
+}
+
+.leave-comment form input::-moz-placeholder {
+  color: #000000;
+}
+
+.leave-comment form input:-ms-input-placeholder {
+  color: #000000;
+}
+
+.leave-comment form input::-ms-input-placeholder {
+  color: #000000;
+}
+
+.leave-comment form input::placeholder {
+  color: #000000;
+}
+
+.leave-comment form textarea {
+  font-size: 13px;
+  color: #000000;
+  width: 100%;
+  height: 100px;
+  border: 1px solid #363636;
+  padding-left: 20px;
+  padding-top: 12px;
+  padding-right: 5px;
+  background: transparent;
+  margin-bottom: 14px;
+  resize: none;
+}
+
+.leave-comment form textarea::-webkit-input-placeholder {
+  color: #000000;
+}
+
+.leave-comment form textarea::-moz-placeholder {
+  color: #000000;
+}
+
+.leave-comment form textarea:-ms-input-placeholder {
+  color: #000000;
+}
+
+.leave-comment form textarea::-ms-input-placeholder {
+  color: #000000;
+}
+
+.leave-comment form textarea::placeholder {
+  color: #000000;
+}
+
+.leave-comment form button {
+  font-size: 18px;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-weight: 700;
+  width: 100%;
+  border: none;
+  background: var(--seconMainBgCol);
+  border: 2px solid var(--seconMainBgCol);
+  border-radius: 110px;
+  padding: 12px 30px;
+  outline: none;
+  text-align: center;
+}
+
+.map {
+  height: 550px;
+  margin-top: 35px;
+}
+
+.map iframe {
+  width: 100%;
+}
+
+.aboutUsDetails {
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+/* Contact Us CSS Ends  */
 @media (max-width: 399px) {
   .nav-item {
     text-align: center !important;

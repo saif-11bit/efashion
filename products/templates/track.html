@@ -13,8 +13,10 @@
             </div>
         </div>
         <div class="row">
-            {% if order.items.all %}
-            {% for i in order.items.all %}
+            {% if order %}
+            {% for j in order %}
+            {% for i in j.items.all %}
+
             <div class="col-lg-6 col-md-12 col-12 m-auto">
                 <div class="card cartSecCard">
                     <div class="row">
@@ -59,6 +61,7 @@
                     </div>
                 </div>
             </div>
+            {% endfor %}
             {% endfor %}
             {% else %}
             <div class="col-lg-8 col-12">

@@ -18,6 +18,9 @@ from .models import (
     Review,
     Payment,
     EmailNewsletter,
+    About,
+    EcomfashionContactDetails,
+    ContactUs,
 )
 from .forms import CheckoutForm
 from . import Checksum
@@ -37,6 +40,8 @@ def landing(request):
     tags = metaTags.objects.all()
     reviews = Review.objects.all()
     emailnews = EmailNewsletter.objects.all()
+    aboutus = About.objects.all()
+
     if request.method=="POST":
         emailn = request.POST.get('email')
         emailnews = EmailNewsletter()
@@ -50,6 +55,7 @@ def landing(request):
         # 'category':Category,
         'tag': tags,
         'review': reviews,
+        'about': aboutus,
     }
     return render(request, 'index.html', context)
 
@@ -58,10 +64,12 @@ def category_item(request,id):
     items = Item.objects.filter(category=id)
     cate = Category.objects.get(id=id)
     tags = metaTags.objects.all()
+    aboutus = About.objects.all()
     context = {
         'items':items,
         'tag': tags,
         'cate':cate,
+        'about': aboutus,
     }
     return render(request, 'product.html', context)
 
@@ -87,11 +95,13 @@ def product_detail(request, id):
     item = Item.objects.get(id=id)
     related_item = Item.objects.exclude(id=id).filter(category=item.category)[:4]
     tags = metaTags.objects.all()
+    aboutus = About.objects.all()
 
     context = {
         'item' :item,
         'tag': tags,
         'related_item':related_item,
+        'about': aboutus,
     }
     return render(request, 'productDes.html', context)
 
@@ -167,8 +177,9 @@ def remove_from_cart(request, id, size):
                 size=size,
             )[0]
 
-            order_item.quantity = 1
-            order_item.save()
+            # order_item.quantity = 1
+            order_item.delete()
+            # order_item.save()
             
             order.items.remove(order_item)
             messages.info(request, "This item was removed from your cart.")
@@ -355,7 +366,7 @@ def success(request):
 def myorders(request):
     myorder = Order.objects.filter(user=request.user,ordered=True)
     context = {
-        'order': myorder,
+        'order': myorder.all(),
     }
     return render(request, 'myorders.html', context)
 
@@ -380,3 +391,25 @@ def trackorder(request):
         'order': myorder,
     }
     return render(request, 'track.html', context)
+
+def aboutUs(request):
+    aboutus = About.objects.all()
+    context = {
+        'about': aboutus
+    }
+    return render(request, 'about.html', context)
+
+def contactUs(request):
+    contactdetails = EcomfashionContactDetails.objects.all()
+    context = {
+        'contact': contactdetails,
+    }
+    if request.method == 'POST':
+        name = request.POST.get('submitter_name')
+        email = request.POST.get('submitter_email')
+        phone_num = request.POST.get('phone_num')
+        message = request.POST.get('message')
+        form = ContactUs(name=name, email=email, phone_num=phone_num, message=message)
+        form.save()
+        messages.info(request, f"{name}, your query has been registered successfully. We will be in touch very soon.")
+    return render(request, 'contact.html',context)    

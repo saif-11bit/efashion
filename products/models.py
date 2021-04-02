@@ -65,18 +65,19 @@ class OrderItem(models.Model):
         ('XL', 'XL'),
         ('2XL', '2XL'),
     ]
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="orderitems")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orderitems')
     ordered = models.BooleanField(default=False)
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
     size = models.CharField(max_length=100, choices=SIZE_OPTION, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.quantity} of {self.item.p_name}"
+        return f"{self.quantity} of {self.item.p_name} at {self.created_at}"
 
-    def no_item_in_cart(self):
-        self.no_ord_cart = OrderItem.objects.filter(user=self.request.user,ordered=False)
-        return self.no_ord_cart
+    # def no_item_in_cart(self):
+    #     self.no_ord_cart = OrderItem.objects.filter(user=self.request.user,ordered=False)
+    #     return self.no_ord_cart
 
     def get_total_item_price(self):
         return self.quantity * self.item.p_price
@@ -92,9 +93,11 @@ class OrderItem(models.Model):
             return self.get_total_discount_item_price()
         return self.get_total_item_price()
 
+    class Meta:
+        ordering = ['-created_at']
 
 class Order(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="cartitems")
     ref_code = models.CharField(max_length=20,null=True,blank=True)
     items = models.ManyToManyField(OrderItem)
     start_date = models.DateTimeField(auto_now_add=True)
@@ -176,3 +179,26 @@ class EmailNewsletter(models.Model):
     email = models.CharField(max_length=60)
     def __str__(self):
         return self.email
+
+class About(models.Model):
+    desc = models.TextField()
+    
+    def __str__(self):
+        return self.desc
+
+class EcomfashionContactDetails(models.Model):
+    address = models.TextField()
+    phone_num = models.CharField(max_length=50)
+    gmail = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.gmail
+
+class ContactUs(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
+    phone_num = models.CharField(max_length=11)
+    message = models.TextField()
+
+    def __str__(self):
+        return f"{self.name} {self.phone_num}"

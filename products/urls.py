@@ -17,6 +17,8 @@ from .views import (
     myorders,
     returnorder,
     trackorder,
+    aboutUs,
+    contactUs,
 )
 
 
@@ -39,6 +41,8 @@ urlpatterns = [
     path('myorders/', myorders, name="myorder"),
     path('return/', returnorder, name="return"),
     path('track/', trackorder, name="track"),
+    path('contact/', contactUs, name="contact"),
+    path('about/', aboutUs, name="about"),
     # Authentication System 
     # path('signup/', SignUpSystem, name="Signin"),
     # path('login/', LoginSystem, name="Login"),

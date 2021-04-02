@@ -11,6 +11,9 @@ from .models import (
     Review,
     Crousal,
 	EmailNewsletter,
+	About,
+	ContactUs,
+	EcomfashionContactDetails,
 )
 # Register your models here.
 
@@ -76,3 +79,6 @@ admin.site.register(metaTags)
 admin.site.register(Review)
 admin.site.register(Crousal)
 admin.site.register(EmailNewsletter)
+admin.site.register(About)
+admin.site.register(ContactUs)
+admin.site.register(EcomfashionContactDetails)

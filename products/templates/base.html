@@ -62,11 +62,12 @@
           </li>
           <li class="nav-item d-none d-sm-block">
             <a class="nav-link carLogoAnchor navAnchorItem" href="/cart/">
+              {% if request.user.orderitems.all %}
               <span class="badge badge-warning">
-                {% if request.user.orderitems.all %}
-                {{ request.user.orderitems.all.count }}
-                {% endif %}
+                {{ request.user.orderitems.count }}
               </span>
+              {% endif %}
+
               <i class="fa fa-opencart cartlogo" aria-hidden="true"></i>
             </a>
           </li>
@@ -78,16 +79,20 @@
             <div class="dropdown-menu dropdown-menu-sm-right" aria-labelledby="navbarDropdown">
 
               {% if user.is_authenticated %}
-              <a class="dropdown-item" href="{% url 'myorder' %}">Hii {{user}}</a>
+              <a class="dropdown-item" href="{% url 'myorder' %}">Hi {{ user|capfirst }}</a>
               <a class="dropdown-item" href="{% url 'myorder' %}">My Orders</a>
               <a class="dropdown-item" href="{% url 'track' %}">Track Order</a>
               <a class="dropdown-item" href="{% url 'return' %}">Return/Refund</a>
+              <a class="dropdown-item" href="{% url 'about' %}">About Us</a>
+              <a class="dropdown-item" href="{% url 'contact' %}">Contact Us</a>
               <div class="dropdown-divider"></div>
               <form method="post" action="{% url 'account_logout' %}">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-link dropdown-item">Logout</a>
               </form>
               {% else %}
+              <a class="dropdown-item" href="{% url 'about' %}">About Us</a>
+              <a class="dropdown-item" href="{% url 'contact' %}">Contact Us</a>
               <a class="dropdown-item" href="{% url 'account_login' %}">Login | Signup</a>
               {% endif %}
 
@@ -129,7 +134,7 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/7a10e3388d.js" crossorigin="anonymous"></script>
-
+  <script src="{% static 'js/copyrightYear.js' %}"></script>
 </body>
 
 </html>
