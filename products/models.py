@@ -46,6 +46,7 @@ class Item(models.Model):
     p_price = models.IntegerField()
     p_dis_price = models.IntegerField(null=True, blank=True)
     p_desc = models.TextField()
+    thirty_four_size = models.BooleanField(null=True)
     small_size = models.BooleanField(null=True)
     medium_size = models.BooleanField(null=True)
     large_size = models.BooleanField(null=True)
@@ -59,6 +60,7 @@ class Item(models.Model):
 
 class OrderItem(models.Model):
     SIZE_OPTION = [
+        ('34','34'),
         ('S', 'S'),
         ('M', 'M'),
         ('L', 'L'),
@@ -95,7 +97,7 @@ class OrderItem(models.Model):
 
     class Meta:
         ordering = ['-created_at']
-
+# vAe1x741Tf
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="cartitems")
     ref_code = models.CharField(max_length=20,null=True,blank=True)
@@ -202,3 +204,12 @@ class ContactUs(models.Model):
 
     def __str__(self):
         return f"{self.name} {self.phone_num}"
+
+class PrivacyPolicy(models.Model):
+    desc = models.TextField()
+
+class TermsCondition(models.Model):
+    desc = models.TextField()
+
+class ReturnPolicy(models.Model):
+    desc = models.TextField()

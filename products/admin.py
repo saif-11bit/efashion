@@ -14,6 +14,9 @@ from .models import (
 	About,
 	ContactUs,
 	EcomfashionContactDetails,
+	TermsCondition,
+	PrivacyPolicy,
+	ReturnPolicy,
 )
 # Register your models here.
 
@@ -82,3 +85,6 @@ admin.site.register(EmailNewsletter)
 admin.site.register(About)
 admin.site.register(ContactUs)
 admin.site.register(EcomfashionContactDetails)
+admin.site.register(PrivacyPolicy)
+admin.site.register(TermsCondition)
+admin.site.register(ReturnPolicy)

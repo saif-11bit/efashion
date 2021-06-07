@@ -19,6 +19,9 @@ from .views import (
     trackorder,
     aboutUs,
     contactUs,
+    privacy_policy,
+    terms_con,
+    refund_return,
 )
 
 
@@ -28,7 +31,7 @@ urlpatterns = [
     path('search/', search_item, name="search"),
     path('cart/', cart_view, name="cart"),
     path('payment/', payment,name="payment"),
-    path('success/', success,name="success"),
+    path('success/<int:id>', success,name="success"),
     path('response/', response, name="response"),
     path('add-coupon/', add_coupon, name="add-coupon"),
     path('add-address/', add_address, name="add-address"),
@@ -43,6 +46,9 @@ urlpatterns = [
     path('track/', trackorder, name="track"),
     path('contact/', contactUs, name="contact"),
     path('about/', aboutUs, name="about"),
+    path('privacy_policy/', privacy_policy, name="policy"),
+    path('terms/', terms_con, name="terms"),
+    path('return_policy/', refund_return, name="returnPolicy"),
     # Authentication System 
     # path('signup/', SignUpSystem, name="Signin"),
     # path('login/', LoginSystem, name="Login"),

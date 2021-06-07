@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect,reverse
 from django.utils import timezone
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -21,11 +21,14 @@ from .models import (
     About,
     EcomfashionContactDetails,
     ContactUs,
+    PrivacyPolicy,
+    TermsCondition,
+    ReturnPolicy,
 )
 from .forms import CheckoutForm
 from . import Checksum
 from django.conf import settings
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from .utils import VerifyPaytmResponse
 import requests
@@ -327,7 +330,7 @@ def payment(request):
         'CALLBACK_URL': settings.PAYTM_CALLBACK_URL,
         # 'MOBILE_NO': '7405505665',
         # 'EMAIL': 'dhaval.savalia6@gmail.com',
-        'CUST_ID': 'saif930go@gmail.com',
+        # 'CUST_ID': 'saif930go@gmail.com',
         'ORDER_ID':order_id,
         'TXN_AMOUNT': bill_amount,
     } # This data should ideally come from database
@@ -344,15 +347,17 @@ def payment(request):
 def response(request):
     resp = VerifyPaytmResponse(request)
     if resp['verified']:
-        return redirect('/success/')
+        order = Order.objects.get(user=request.user, ordered=False)
+        order_id = order.id
+        return HttpResponseRedirect(reverse('success', args=(order_id,)))
         # save success details to db; details in resp['paytm']
         # return HttpResponse("<center><h1>Transaction Successful</h1><br><h3>Return Home</h3><center>", status=200)
     else:
         # check what happened; details in resp['paytm']
         return HttpResponse("<center><h1>Transaction Failed</h1><center>", status=400)
 
-def success(request):
-    order = Order.objects.get(user=request.user, ordered=False)
+def success(request, id):
+    order = Order.objects.get(id=id)
     payment = Payment()
     payment.user = request.user
     payment.amount = order.get_total()
@@ -413,3 +418,24 @@ def contactUs(request):
         form.save()
         messages.info(request, f"{name}, your query has been registered successfully. We will be in touch very soon.")
     return render(request, 'contact.html',context)    
+
+def privacy_policy(request):
+    policy = PrivacyPolicy.objects.all()
+    context = {
+        'privacy': policy,
+    }
+    return render(request, 'privacypolicy.html',context)
+
+def terms_con(request):
+    terms = TermsCondition.objects.all()
+    context = {
+        'condition': terms,
+    }
+    return render(request, 'tc.html',context)
+
+def refund_return(request):
+    return_refund = ReturnPolicy.objects.all()
+    context = {
+        'return_policy': return_refund,
+    }
+    return render(request, 'refundpolicy.html',context)
